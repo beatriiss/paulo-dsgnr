@@ -71,13 +71,13 @@ export default function Experiencia() {
         {/* Linha vertical, centralizada na coluna das logos (140px / 2 = 70px).
             z-[5] para ficar acima dos dividers horizontais, mas abaixo das logos. */}
         <div className="absolute left-[130px] top-0 bottom-0 w-px bg-[#00E9E5] z-[5]" />
-                        <Image
-                  src={'/logo2-paulodsgnr.svg'}
-                  alt={'Logo'}
-                  width={120}
-                  height={60}
-                  className="max-w-[200px] max-h-30 w-auto h-auto object-contain mr-8"
-                />
+        <Image
+          src={'/logo2-paulodsgnr.svg'}
+          alt={'Logo'}
+          width={120}
+          height={60}
+          className="max-w-[180px] max-h-24 w-auto h-auto object-contain ml-4"
+        />
 
         {/* Divider acima do primeiro item (logo -> ano) */}
         <div className="col-span-2 h-px bg-white/10 z-0" />
