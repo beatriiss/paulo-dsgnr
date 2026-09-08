@@ -14,13 +14,25 @@ export default function Home() {
     <main>
       <Header />
       <Hero />
-      <Stats />
-      <Sobre />
-      <Solucoes />
-      <Portfolio/>
-      <ComoFunciona/>
-      <Experiencia/>
-      <Contato/>
+
+      {/* A partir daqui (Stats) até o fim da página, fundo único em modo
+          "fixed" (parallax): a imagem fica grudada na tela enquanto o
+          conteúdo rola por cima. O overflow-hidden no wrapper garante que
+          ela não vaze pra trás do Header/Hero. */}
+      <div className="relative overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-[url('/images/background-full-site.webp')] bg-cover bg-center bg-no-repeat"
+        />
+
+        <Stats />
+        <Sobre />
+        <Solucoes />
+        <Portfolio />
+        <ComoFunciona />
+        <Experiencia />
+        <Contato />
+      </div>
     </main>
   );
 }

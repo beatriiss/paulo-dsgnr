@@ -9,7 +9,16 @@ import { HiMenu, HiX } from "react-icons/hi";
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
 
-    const links = ["SOBRE MIM","SOLUÇÕES", "PORTFÓLIO", "COMO FUNCIONA", "EXPERIÊNCIA"];
+    // Cada link aponta pro id da seção correspondente (ver os componentes:
+    // AboutMe id="sobre-mim", Solutions id="solucoes", Portifolio id="portfolio",
+    // HowItWorks id="como-funciona", Experience id="experiencia")
+    const links = [
+        { label: "SOBRE MIM", href: "#sobre-mim" },
+        { label: "SOLUÇÕES", href: "#solucoes" },
+        { label: "PORTFÓLIO", href: "#portfolio" },
+        { label: "COMO FUNCIONA", href: "#como-funciona" },
+        { label: "EXPERIÊNCIA", href: "#experiencia" },
+    ];
 
     return (
         <header className="relative z-50">
@@ -20,8 +29,8 @@ export default function Header() {
                 {/* Nav desktop */}
                 <nav className="hidden lg:flex items-center gap-6 text-base font-medium text-white/80">
                     {links.map((link) => (
-                        <a key={link} href="#" className="hover:text-white transition-colors">
-                            {link}
+                        <a key={link.href} href={link.href} className="hover:text-white transition-colors">
+                            {link.label}
                         </a>
                     ))}
                 </nav>
@@ -29,7 +38,9 @@ export default function Header() {
                 {/* Ações à direita */}
                 <div className="flex items-center gap-3 sm:gap-4">
 
-                    <a href="#"
+                    <a href="https://instagram.com/paulodsgnr"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="hidden sm:flex items-center gap-1.5 text-sm lg:text-base text-white/70 hover:text-white transition-colors"
                     >
                         <FaInstagram color="#38b6ff" size={20} />
@@ -53,7 +64,6 @@ export default function Header() {
                 </div>
             </div>
 
-            {/* Logo posicionada fora do fluxo, responsiva */}
             {/* Logo posicionada fora do fluxo, responsiva */}
             <div className="absolute top-1 sm:top-10 left-5 sm:left-16 z-50 w-[140px] sm:w-[188px] md:w-[187px] lg:w-[354px]">
                 <Image
@@ -82,16 +92,18 @@ export default function Header() {
                 <div className="lg:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-sm border-t border-white/10 px-6 py-6 flex flex-col gap-4 z-40">
                     {links.map((link) => (
 
-                        <a key={link}
-                            href="#"
+                        <a key={link.href}
+                            href={link.href}
                             className="text-white/80 hover:text-white text-base font-medium transition-colors"
                             onClick={() => setMenuOpen(false)}
                         >
-                            {link}
+                            {link.label}
                         </a>
                     ))}
 
-                    <a href="#"
+                    <a href="https://instagram.com/paulodsgnr"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex items-center gap-1.5 text-white/70 hover:text-white transition-colors pt-2"
                     >
                         <FaInstagram color="#38b6ff" size={20} />
