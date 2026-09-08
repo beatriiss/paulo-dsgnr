@@ -1,7 +1,6 @@
 // src/components/Hero.tsx
 import Image from "next/image";
 import { MapPin, Mail, Phone, Download, Send } from "lucide-react";
-import { FaLinkedinIn } from "react-icons/fa";
 
 export default function Hero() {
   return (
@@ -30,7 +29,7 @@ export default function Hero() {
       </svg>
 
       {/* Foto com o contorno neon já incluso na própria imagem (recorte com fundo transparente) */}
-      <div className="relative flex justify-center lg:ml-[220px] -mt-14">
+      <div className="relative flex justify-center lg:ml-[220px] -mt-14 transition-transform duration-300 hover:scale-105">
         <Image
           src="/images/paulo-hero.webp"
           alt="Paulo Vinícius"
@@ -39,7 +38,6 @@ export default function Hero() {
           priority
           className="relative w-full max-w-[490px] h-auto object-contain z-10"
         />
-
       </div>
 
       {/* Texto */}
@@ -51,9 +49,9 @@ export default function Hero() {
             PT
           </button>
           <span className="text-white/30">/</span>
-          <button className="hover:text-white">EN</button>
+          <button className="hover:text-white transition-colors">EN</button>
           <span className="text-white/30">/</span>
-          <button className="hover:text-white">ES</button>
+          <button className="hover:text-white transition-colors">ES</button>
         </div>
 
         <p className="text-sm mb-2 bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent w-fit">
@@ -84,7 +82,7 @@ export default function Hero() {
         {/* Cards de contato */}
         <div className="flex flex-wrap gap-3 mb-4">
           {/* Card Brasil - borda em gradiente */}
-          <div className="rounded-xl p-[1px] bg-gradient-to-r from-accent-green to-accent-blue">
+          <div className="rounded-xl p-[1px] bg-gradient-to-r from-accent-green to-accent-blue transition-transform duration-300 hover:-translate-y-1">
             <div className="flex items-center gap-2 rounded-xl bg-bg px-4 py-2">
               <MapPin size={18} style={{ stroke: "url(#iconGradient)" }} />
               <div className="leading-tight">
@@ -95,7 +93,7 @@ export default function Hero() {
           </div>
 
           {/* Card E-mail - borda em gradiente */}
-          <div className="rounded-xl p-[1px] bg-gradient-to-r from-accent-green to-accent-blue">
+          <div className="rounded-xl p-[1px] bg-gradient-to-r from-accent-green to-accent-blue transition-transform duration-300 hover:-translate-y-1">
             <div className="flex items-center gap-2 rounded-xl bg-bg px-4 py-2">
               <Mail size={18} style={{ stroke: "url(#iconGradient)" }} />
               <div className="leading-tight">
@@ -106,7 +104,7 @@ export default function Hero() {
           </div>
 
           {/* Card WhatsApp - borda em gradiente */}
-          <div className="rounded-xl p-[1px] bg-gradient-to-r from-accent-green to-accent-blue">
+          <div className="rounded-xl p-[1px] bg-gradient-to-r from-accent-green to-accent-blue transition-transform duration-300 hover:-translate-y-1">
             <div className="flex items-center gap-2 rounded-xl bg-bg px-4 py-2">
               <Phone size={18} style={{ stroke: "url(#iconGradient)" }} />
               <div className="leading-tight">
@@ -121,7 +119,7 @@ export default function Hero() {
         <a
           href="https://linkedin.com/in/paulo-designer-928656239/"
           target="_blank"
-          className="flex items-center gap-2 text-sm text-white/70 hover:text-white mb-6"
+          className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors mb-6"
         >
                   <Image
           src="/images/linkedin-icon.webp"
@@ -135,14 +133,14 @@ export default function Hero() {
 
         <div className="flex gap-4">
           {/* Botão Baixar Currículo - borda em gradiente */}
-          <div className="rounded-md p-[1px] bg-gradient-to-r from-accent-green to-accent-blue">
+          <div className="rounded-md p-[1px] bg-gradient-to-r from-accent-green to-accent-blue transition-transform duration-300 hover:scale-105">
             <button className="flex items-center gap-2 rounded-md bg-bg text-white px-6 py-2 text-sm font-semibold w-full h-full">
               BAIXAR CURRÍCULO <Download size={16} style={{ stroke: "url(#iconGradient)" }} />
             </button>
           </div>
 
           {/* Botão Entrar em Contato - borda em gradiente */}
-          <div className="rounded-md p-[1px] bg-gradient-to-r from-accent-green to-accent-blue">
+          <div className="rounded-md p-[1px] bg-gradient-to-r from-accent-green to-accent-blue transition-transform duration-300 hover:scale-105">
             <button className="flex items-center gap-2 rounded-md bg-bg text-white px-6 py-2 text-sm font-semibold w-full h-full">
               ENTRAR EM CONTATO <Send size={16} style={{ stroke: "url(#iconGradient)" }} />
             </button>
@@ -152,7 +150,7 @@ export default function Hero() {
 
       {/* Mockup dos dispositivos (tablet + celular já composto em perspectiva na própria imagem) */}
       <div
-        className="absolute right-[60px] top-[260px] -translate-y-1/2 hidden xl:block pointer-events-none"
+        className="absolute right-[60px] top-[260px] -translate-y-1/2 hidden xl:block transition-transform duration-300 hover:scale-105"
         aria-hidden="true"
       >
         <Image

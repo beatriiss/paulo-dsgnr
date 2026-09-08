@@ -16,32 +16,5 @@
 body {
   background-color: var(--color-bg);
   color: white;
-}
-
-/* Animações customizadas do Hero */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
-}
-
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(57, 255, 143, 0.35); }
-  50% { box-shadow: 0 0 0 10px rgba(57, 255, 143, 0); }
-}
-
-.animate-float {
-  animation: float 4.5s ease-in-out infinite;
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.7s ease-out both;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2.5s ease-in-out infinite;
+  overflow-x: hidden;
 }

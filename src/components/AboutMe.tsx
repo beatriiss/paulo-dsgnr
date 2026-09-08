@@ -4,9 +4,13 @@ import Image from "next/image";
 export default function Sobre() {
   return (
     <section id="sobre-mim" className="px-8 py-16 max-w-6xl mx-auto">
-      <h2 className="text-accent-yellow font-display font-bold text-2xl tracking-wide mb-6">
-        SOBRE MIM
-      </h2>
+      <Image
+        src="/images/titulo-sobre-mim.webp"
+        alt="Soluções"
+        width={280}
+        height={30}
+        className="h-8 w-auto mb-10"
+      />
 
       {/* Card com borda em gradiente colorido (mesmas cores do CONTORNOCOLOR_SOBREMIM) */}
       <div className="rounded-2xl p-[1.5px] bg-[linear-gradient(to_right,#ECAF00,#B1FF19,#35EF85,#00E9D5,#1195FA,#2656FE,#9509FF)]">
