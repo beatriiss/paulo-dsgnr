@@ -13,6 +13,7 @@ type Projeto = {
   categoria: Categoria;
   capa: string;
   imagens: string[];
+  descricao?: string;
 };
 
 // Gera ["/path/01.png", "/path/02.png", ...] a partir de uma quantidade e extensão
@@ -41,8 +42,11 @@ const projetos: Projeto[] = [
     slug: "dulub-social-media",
     nome: "DULUB - Tecnologia Fluida",
     categoria: "Social Media",
-    capa: "/images/portfolio/social-media/dulub/01.jpg",
+    capa: "/images/portfolio/social-media/dulub/capa-social-media-dolub.webp",
     imagens: gerarPaginas("/images/portfolio/social-media/dulub", 25, "jpg"),
+    // TODO: troque por um texto real sobre o projeto — este é só um placeholder
+    descricao:
+      "Conteúdo desenvolvido para as redes sociais da DULUB, unindo identidade visual consistente e comunicação clara para fortalecer a presença digital da marca.",
   },
 ];
 
@@ -52,13 +56,6 @@ const categorias: Categoria[] = [
   "Social Media",
   "Sites",
   "Design Gráfico",
-];
-
-// As 3 cores de moldura, extraídas dos arquivos originais (mesmo degradê, agora em CSS)
-const MOLDURA_GRADIENTS = [
-  "linear-gradient(135deg, #ECAD01, #50F36F)", // laranja -> verde
-  "linear-gradient(135deg, #2FEE8C, #08BDF2)", // verde -> ciano/azul
-  "linear-gradient(135deg, #0BAFF5, #5C11FF)", // azul -> roxo
 ];
 
 // Ícone "ver projeto" (seta), extraído do SETA_VERPROJETO.svg,
@@ -99,40 +96,39 @@ export default function Portfolio() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {itens.length > 0
-                  ? itens.map((projeto, i) => (
+                  ? itens.map((projeto) => (
                       <button
                         key={projeto.slug}
                         onClick={() =>
                           setProjetoAberto({
                             nome: projeto.nome,
+                            categoria: projeto.categoria,
+                            descricao: projeto.descricao,
                             imagens: projeto.imagens,
                           })
                         }
-                        className="group relative aspect-[1890/2355] overflow-hidden rounded-2xl p-[2px] text-left"
-                        style={{ backgroundImage: MOLDURA_GRADIENTS[i % MOLDURA_GRADIENTS.length] }}
+                        className="group relative flex aspect-[1890/2355] flex-col overflow-hidden rounded-2xl bg-black text-left"
                       >
-                        <div className="flex h-full w-full flex-col overflow-hidden rounded-[14px] bg-black">
-                          {/* Capa do projeto */}
-                          <div className="relative min-h-0 flex-1">
-                            <Image
-                              src={projeto.capa}
-                              alt={projeto.nome}
-                              fill
-                              sizes="(max-width: 768px) 100vw, 33vw"
-                              className="object-cover transition duration-300 group-hover:scale-105"
-                            />
-                          </div>
+                        {/* Capa do projeto */}
+                        <div className="relative min-h-0 flex-1">
+                          <Image
+                            src={projeto.capa}
+                            alt={projeto.nome}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            className="object-cover transition duration-300 group-hover:scale-105"
+                          />
+                        </div>
 
-                          {/* Rodapé preto sólido com nome e link */}
-                          <div className="bg-black px-4 py-3">
-                            <p className="font-display font-bold text-sm leading-tight text-white">
-                              {projeto.nome}
-                            </p>
-                            <span className="mt-1.5 flex items-center gap-1 text-[11px] tracking-wide text-white/60 transition-transform duration-300 group-hover:translate-x-1">
-                              VER PROJETO
-                              <SetaVerProjeto className="h-2 w-2" />
-                            </span>
-                          </div>
+                        {/* Rodapé preto sólido com nome e link */}
+                        <div className="bg-black px-4 py-3">
+                          <p className="font-display font-bold text-sm leading-tight text-white">
+                            {projeto.nome}
+                          </p>
+                          <span className="mt-1.5 flex items-center gap-1 text-[11px] tracking-wide text-white/60 transition-transform duration-300 group-hover:translate-x-1">
+                            VER PROJETO
+                            <SetaVerProjeto className="h-2 w-2" />
+                          </span>
                         </div>
                       </button>
                     ))

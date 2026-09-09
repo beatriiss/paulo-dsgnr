@@ -26,7 +26,7 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="flex flex-wrap justify-center py-10 border-y border-white/10">
+    <section className="flex flex-wrap justify-center py-10 ">
       {stats.map((s, i) => (
         <div key={s.label} className="flex items-center">
           <div className="flex items-center gap-3 px-8 py-2 rounded-xl transition-transform duration-300 ease-out hover:scale-110 cursor-default">

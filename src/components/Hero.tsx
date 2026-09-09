@@ -5,19 +5,6 @@ import { MapPin, Mail, Phone, Download, Send } from "lucide-react";
 export default function Hero() {
   return (
     <section className="relative px-8 py-8 grid lg:grid-cols-2 gap-12 items-center overflow-visible mt-12 ">
-      {/* Background decorativo (o "H" em relevo) atrás de todo o conteúdo */}
-      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
-        <Image
-          src="/images/background-hero.webp"
-          alt=""
-          fill
-          priority
-          className="object-cover object-center opacity-80"
-        />
-        {/* Fade nas bordas pra não cortar seco no resto da página */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bg" />
-      </div>
-
       {/* Definição do gradiente usado nos ícones SVG (stroke/fill) */}
       <svg width="0" height="0" className="absolute">
         <defs>
