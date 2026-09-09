@@ -46,7 +46,7 @@ const projetos: Projeto[] = [
     imagens: gerarPaginas("/images/portfolio/social-media/dulub", 25, "jpg"),
     // TODO: troque por um texto real sobre o projeto — este é só um placeholder
     descricao:
-      "Conteúdo desenvolvido para as redes sociais da DULUB, unindo identidade visual consistente e comunicação clara para fortalecer a presença digital da marca.",
+      "O desafio era sair do lugar comum técnico e construir uma comunicação com mais confiança. A direção visual foi pensada para traduzir a tecnologia fluida da marca em uma linguagem mais acessível, direta e profissional, aproximando a DULUB do mecânico, do lojista e do consumidor final. O resultado é um feed mais consistente, estratégico e com mais autoridade no segmento.",
   },
 ];
 
@@ -97,20 +97,18 @@ export default function Portfolio() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {itens.length > 0
                   ? itens.map((projeto) => (
-                      <button
-                        key={projeto.slug}
-                        onClick={() =>
-                          setProjetoAberto({
-                            nome: projeto.nome,
-                            categoria: projeto.categoria,
-                            descricao: projeto.descricao,
-                            imagens: projeto.imagens,
-                          })
-                        }
-                        className="group relative flex aspect-[1890/2355] flex-col overflow-hidden rounded-2xl bg-black text-left"
-                      >
-                        {/* Capa do projeto */}
-                        <div className="relative min-h-0 flex-1">
+                      <div key={projeto.slug} className="group flex flex-col">
+                        <button
+                          onClick={() =>
+                            setProjetoAberto({
+                              nome: projeto.nome,
+                              categoria: projeto.categoria,
+                              descricao: projeto.descricao,
+                              imagens: projeto.imagens,
+                            })
+                          }
+                          className="relative aspect-[1890/2355] overflow-hidden rounded-2xl bg-black text-left"
+                        >
                           <Image
                             src={projeto.capa}
                             alt={projeto.nome}
@@ -118,10 +116,9 @@ export default function Portfolio() {
                             sizes="(max-width: 768px) 100vw, 33vw"
                             className="object-cover transition duration-300 group-hover:scale-105"
                           />
-                        </div>
+                        </button>
 
-                        {/* Rodapé preto sólido com nome e link */}
-                        <div className="bg-black px-4 py-3">
+                        <div className="pt-3">
                           <p className="font-display font-bold text-sm leading-tight text-white">
                             {projeto.nome}
                           </p>
@@ -130,7 +127,7 @@ export default function Portfolio() {
                             <SetaVerProjeto className="h-2 w-2" />
                           </span>
                         </div>
-                      </button>
+                      </div>
                     ))
                   : // Placeholder para categorias sem material ainda (Sites, Design Gráfico)
                     Array.from({ length: 3 }, (_, i) => (

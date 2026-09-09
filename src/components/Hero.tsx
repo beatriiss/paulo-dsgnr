@@ -18,7 +18,7 @@ export default function Hero() {
       {/* Foto com o contorno neon já incluso na própria imagem (recorte com fundo transparente) */}
       <div className="relative flex justify-center lg:ml-[220px] -mt-14 transition-transform duration-300 hover:scale-105">
         <Image
-          src="/images/paulo-hero.webp"
+          src="/images/image-hero.png"
           alt="Paulo Vinícius"
           width={500}
           height={620}

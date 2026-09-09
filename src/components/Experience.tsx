@@ -61,7 +61,7 @@ export default function Experiencia() {
         alt="Experiência Profissional"
         width={420}
         height={38}
-        className="h-8 w-auto mb-10"
+        className="h-8 w-auto mb-18"
       />
 
       {/* Grid único: coluna 1 = logos (140px), coluna 2 = conteúdo.
@@ -82,7 +82,7 @@ export default function Experiencia() {
         {/* Divider acima do primeiro item (logo -> ano) */}
         <div className="col-span-2 h-px bg-white/10 z-0" />
 
-        {experiencias.map((exp) => (
+        {experiencias.map((exp, i) => (
           <Fragment key={exp.empresa}>
             {/* Logo da empresa, centralizada sobre a linha */}
             <div className="relative z-10 flex justify-center items-start pt-1">
@@ -119,8 +119,11 @@ export default function Experiencia() {
               </p>
             </div>
 
-            {/* Divider abaixo do item (serve também como "acima" do próximo item) */}
-            <div className="col-span-2 h-px bg-white/10 z-0" />
+            {/* Divider abaixo do item (serve também como "acima" do próximo item) —
+                não aparece depois do último item da lista */}
+            {i < experiencias.length - 1 && (
+              <div className="col-span-2 h-px bg-white/10 z-0" />
+            )}
           </Fragment>
         ))}
       </div>

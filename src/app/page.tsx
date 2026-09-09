@@ -39,7 +39,7 @@ export default function Home() {
       <div className="relative overflow-hidden">
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-[url('/images/background-full-site.webp')] bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 -z-10 bg-[url('/images/background-full-site.svg')] bg-cover bg-center bg-no-repeat bg-bg"
         />
 
         <Stats />
