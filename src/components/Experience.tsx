@@ -76,7 +76,7 @@ export default function Experiencia() {
           alt={'Logo'}
           width={120}
           height={60}
-          className="max-w-[180px] max-h-20 w-auto h-auto object-contain ml-5"
+          className="max-w-[180px] max-h-16 w-auto h-auto object-contain ml-8"
         />
 
         {/* Divider acima do primeiro item (logo -> ano) */}

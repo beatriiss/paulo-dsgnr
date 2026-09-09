@@ -80,10 +80,11 @@ export default function PortfolioModal({ projeto, onClose }: Props) {
   // no layout de destaque de Social Media não tem imagem "ativa" pra navegar)
   useEffect(() => {
     if (!projeto) return;
+    const categoria = projeto.categoria;
 
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
-      if (projeto.categoria === "Social Media") return;
+      if (categoria === "Social Media") return;
       if (e.key === "ArrowLeft") anterior();
       if (e.key === "ArrowRight") proximo();
     }
