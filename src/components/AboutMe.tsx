@@ -12,17 +12,17 @@ export default function Sobre() {
         className="h-8 w-auto mb-10"
       />
 
-      {/* Card com borda em gradiente colorido (mesmas cores do CONTORNOCOLOR_SOBREMIM) */}
-      <div className="rounded-2xl p-[1.5px] bg-[linear-gradient(to_right,#ECAF00,#B1FF19,#35EF85,#00E9D5,#1195FA,#2656FE,#9509FF)]">
-        <div className="flex flex-col md:flex-row gap-8 rounded-2xl bg-bg p-2 md:p-2">
+      {/* Card escuro único, com foto encaixada e barra de gradiente na base */}
+      <div className="relative overflow-hidden rounded-2xl bg-[#1a1a1a]">
+        <div className="flex flex-col md:flex-row gap-8 p-6 md:p-6 pb-8">
           {/* Foto */}
           <div className="shrink-0 mx-auto md:mx-0">
             <Image
-              src="/images/sobre-mim.webp"
+              src="/images/foto-sobre-mim.png"
               alt="Paulo Vinícius"
               width={370}
               height={440}
-              className="w-[370px] h-[440px] object-cover rounded-xl"
+              className="w-[370px] h-[460px]  object-cover rounded-xl "
             />
           </div>
 
@@ -48,6 +48,9 @@ export default function Sobre() {
             </p>
           </div>
         </div>
+
+        {/* Barra de gradiente colorida na base */}
+        <div className="absolute inset-x-0 bottom-0 h-2 bg-[linear-gradient(to_right,#ECAF00,#B1FF19,#35EF85,#00E9D5,#1195FA,#2656FE,#9509FF)]" />
       </div>
     </section>
   );

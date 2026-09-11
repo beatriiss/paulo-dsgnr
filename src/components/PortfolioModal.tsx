@@ -126,21 +126,25 @@ function ModalDestaqueBase({
   );
 }
 
-// Galeria em grid (várias linhas) — usada em Social Media
+// Galeria em grid (várias linhas) — usada em Social Media.
+// Cada imagem mantém sua proporção original (sem cortar topo/base nem
+// sobrar faixas pretas nas laterais): o container não tem altura fixa,
+// a altura é a que a própria imagem definir.
 function GaleriaGrid({ projeto }: { projeto: ProjetoModal }) {
   return (
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {projeto.imagens.map((img, i) => (
         <div
           key={img}
-          className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-black/20 transition-transform duration-300 hover:-translate-y-1"
+          className="overflow-hidden rounded-2xl bg-black/20 transition-transform duration-300 hover:-translate-y-1"
         >
           <Image
             src={img}
             alt={`${projeto.nome} - imagem ${i + 1}`}
-            fill
+            width={1000}
+            height={1250}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover"
+            className="h-auto w-full object-contain"
           />
         </div>
       ))}
@@ -149,7 +153,8 @@ function GaleriaGrid({ projeto }: { projeto: ProjetoModal }) {
 }
 
 // Galeria em fileira única, com setas dos dois lados pra rolar — usada em
-// Identidade Visual
+// Identidade Visual. Mesma lógica: largura fixa por card, altura livre
+// conforme a proporção real de cada imagem.
 function GaleriaLinhaUnica({ projeto }: { projeto: ProjetoModal }) {
   const trilhoRef = useRef<HTMLDivElement>(null);
 
@@ -187,20 +192,21 @@ function GaleriaLinhaUnica({ projeto }: { projeto: ProjetoModal }) {
 
       <div
         ref={trilhoRef}
-        className="no-scrollbar flex gap-6 overflow-x-auto scroll-smooth pb-2"
+        className="no-scrollbar flex items-start gap-6 overflow-x-auto scroll-smooth pb-2"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {projeto.imagens.map((img, i) => (
           <div
             key={img}
-            className="relative aspect-[4/5] w-[75%] shrink-0 overflow-hidden rounded-2xl bg-black/20 sm:w-[45%] lg:w-[30%]"
+            className="w-[75%] shrink-0 overflow-hidden rounded-2xl bg-black/20 sm:w-[45%] lg:w-[30%]"
           >
             <Image
               src={img}
               alt={`${projeto.nome} - imagem ${i + 1}`}
-              fill
+              width={1000}
+              height={1250}
               sizes="(max-width: 640px) 75vw, (max-width: 1024px) 45vw, 30vw"
-              className="object-cover"
+              className="h-auto w-full object-contain"
             />
           </div>
         ))}

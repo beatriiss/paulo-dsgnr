@@ -14,6 +14,7 @@ type Projeto = {
   capa: string;
   imagens: string[];
   descricao?: string;
+  capaFoco?: string; // ex: "top", "bottom", "50% 20%" — controla o object-position da capa
 };
 
 // Gera ["/path/01.png", "/path/02.png", ...] a partir de uma quantidade e extensão
@@ -30,6 +31,7 @@ const projetos: Projeto[] = [
     categoria: "Identidade Visual",
     capa: "/images/portfolio/identidade-visual/kito/01.png",
     imagens: gerarPaginas("/images/portfolio/identidade-visual/kito", 16, "png"),
+    capaFoco: "top", // ajuste se ainda cortar errado
   },
   {
     slug: "jefferson-xavier",
@@ -114,6 +116,7 @@ export default function Portfolio() {
                             alt={projeto.nome}
                             fill
                             sizes="(max-width: 768px) 100vw, 33vw"
+                            style={{ objectPosition: projeto.capaFoco ?? "center" }}
                             className="object-cover transition duration-300 group-hover:scale-105"
                           />
                         </button>
