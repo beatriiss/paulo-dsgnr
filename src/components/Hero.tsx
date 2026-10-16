@@ -15,7 +15,7 @@ export default function Hero() {
       </svg>
 
       {/* Foto */}
-      <div className="relative flex justify-center lg:ml-[220px] -mt-14 transition-transform duration-300 hover:scale-105">
+      <div className="relative flex justify-center lg:ml-[220px] -mt-14 transition-transform duration-500 ease-out hover:scale-105 animate-enter [--enter-delay:100ms]">
         <Image
           src="/images/image-hero.png"
           alt="Paulo Vinícius"
@@ -30,7 +30,7 @@ export default function Hero() {
       <div className="-ml-20 scale-[0.93]">
 
         {/* Seletor de idioma */}
-        <div className="flex items-center gap-2 text-xs text-white/60 mb-6">
+        <div className="flex items-center gap-2 text-xs text-white/60 mb-6 animate-enter [--enter-delay:200ms]">
           <span className="tracking-widest">SELECT LANGUAGE:</span>
 
           <button className="font-semibold bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent">
@@ -51,12 +51,12 @@ export default function Hero() {
         </div>
 
         {/* Saudação */}
-        <p className="text-sm mb-2 bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent w-fit">
+        <p className="text-sm mb-2 bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent w-fit animate-enter [--enter-delay:300ms]">
           ● Olá, eu sou
         </p>
 
         {/* Nome */}
-        <h1 className="font-display font-bold text-6xl leading-none mb-4">
+        <h1 className="font-display font-bold text-6xl leading-none mb-4 animate-enter [--enter-delay:380ms]">
           PAULO
           <br />
 
@@ -66,7 +66,7 @@ export default function Hero() {
         </h1>
 
         {/* Serviços */}
-        <p className="text-sm text-white/60 mb-4 tracking-wide">
+        <p className="text-sm text-white/60 mb-4 tracking-wide animate-enter [--enter-delay:460ms]">
           <span className="font-bold text-white">IDENTIDADE</span> VISUAL ·{" "}
           <span className="font-bold text-white">SOCIAL</span> MEDIA ·{" "}
           <span className="font-bold text-white">WEB</span>SITES ·{" "}
@@ -74,7 +74,7 @@ export default function Hero() {
         </p>
 
         {/* Descrição */}
-        <p className="text-white text-[14px] italic font-bold leading-tight max-w-md mb-6">
+        <p className="text-white text-[14px] italic font-bold leading-tight max-w-md mb-6 animate-enter [--enter-delay:540ms]">
           Sou designer gráfico com mais de 15 anos de experiência no
           desenvolvimento de marcas, materiais gráficos, conteúdo para redes
           sociais e soluções digitais para empresas. Meu propósito é criar
@@ -85,10 +85,10 @@ export default function Hero() {
         {/* =====================================================
             CONTATOS — SEM CONTORNO
         ====================================================== */}
-        <div className="flex flex-wrap items-center gap-6 mb-4">
+        <div className="flex flex-wrap items-center gap-6 mb-4 animate-enter [--enter-delay:620ms]">
 
           {/* Brasil */}
-          <div className="flex items-center gap-2 transition-transform duration-300 hover:-translate-y-1">
+          <div className="flex items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1">
             <Image
               src="/images/button-loc.svg"
               alt="Localização"
@@ -99,7 +99,7 @@ export default function Hero() {
           </div>
 
           {/* E-mail */}
-          <div className="flex items-center gap-2 transition-transform duration-300 hover:-translate-y-1">
+          <div className="flex items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1">
             <Image
               src="/images/button-email.svg"
               alt="E-mail"
@@ -110,7 +110,7 @@ export default function Hero() {
           </div>
 
           {/* WhatsApp */}
-          <div className="flex items-center gap-2 transition-transform duration-300 hover:-translate-y-1">
+          <div className="flex items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1">
             <Image
               src="/images/button-wpp.svg"
               alt="WhatsApp"
@@ -127,7 +127,7 @@ export default function Hero() {
           href="https://linkedin.com/in/paulo-designer-928656239/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors mb-6"
+          className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors mb-6 w-fit animate-enter [--enter-delay:700ms]"
         >
           <Image
             src="/images/linkedin-icon.webp"
@@ -142,11 +142,11 @@ export default function Hero() {
         {/* =====================================================
             BOTÕES
         ====================================================== */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6 animate-enter [--enter-delay:780ms]">
 
           {/* BAIXAR CURRÍCULO — MANTÉM CONTORNO */}
-          <div >
-            <button >
+          <div>
+            <button className="transition-transform duration-300 ease-out hover:-translate-y-1">
               <Image
                 src="/images/button-curriculo.svg"
                 alt="WhatsApp"
@@ -158,7 +158,7 @@ export default function Hero() {
           </div>
 
           {/* ENTRAR EM CONTATO */}
-          <button className="-mt-1">
+          <button className="-mt-1 transition-transform duration-300 ease-out hover:-translate-y-1">
             <Image
               src="/images/button-contact.svg"
               alt="WhatsApp"
@@ -173,16 +173,19 @@ export default function Hero() {
 
       {/* Mockup dos dispositivos */}
       <div
-        className="absolute right-[60px] top-[260px] -translate-y-1/2 hidden xl:block transition-transform duration-300 hover:scale-105"
+        className="absolute right-[60px] top-[260px] -translate-y-1/2 hidden xl:block transition-transform duration-500 ease-out hover:scale-105 animate-enter [--enter-delay:500ms]"
         aria-hidden="true"
       >
-        <Image
-          src="/images/image-02-hero.png"
-          alt="Preview do site em tablet e celular"
-          width={350}
-          height={325}
-          className="w-[430px] h-auto drop-shadow-[0_25px_60px_rgba(0,0,0,0.6)]"
-        />
+        {/* Wrapper só pra flutuação, separado da animação de entrada */}
+        <div className="animate-float">
+          <Image
+            src="/images/image-02-hero.png"
+            alt="Preview do site em tablet e celular"
+            width={350}
+            height={325}
+            className="w-[430px] h-auto drop-shadow-[0_25px_60px_rgba(0,0,0,0.6)]"
+          />
+        </div>
       </div>
 
       {/* Linha gradiente */}

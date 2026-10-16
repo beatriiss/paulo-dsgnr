@@ -1,28 +1,31 @@
 // src/components/Sobre.tsx
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 export default function Sobre() {
   return (
     <section id="sobre-mim" className="px-8 py-16 max-w-6xl mx-auto">
-      <Image
-        src="/images/titulo-sobre-mim.webp"
-        alt="Soluções"
-        width={280}
-        height={30}
-        className="h-8 w-auto mb-10"
-      />
+      <Reveal variant="left">
+        <Image
+          src="/images/titulo-sobre-mim.webp"
+          alt="Sobre mim"
+          width={280}
+          height={30}
+          className="h-8 w-auto mb-10"
+        />
+      </Reveal>
 
       {/* Card escuro único, com foto encaixada e barra de gradiente na base */}
-      <div className="relative overflow-hidden rounded-2xl bg-[#1a1a1a]">
+      <Reveal className="relative overflow-hidden rounded-2xl bg-[#1a1a1a]">
         <div className="flex flex-col md:flex-row gap-8 p-6 md:p-6 pb-8">
           {/* Foto */}
-          <div className="shrink-0 mx-auto md:mx-0">
+          <div className="shrink-0 mx-auto md:mx-0 overflow-hidden rounded-xl">
             <Image
               src="/images/foto-sobre-mim.png"
               alt="Paulo Vinícius"
               width={370}
               height={440}
-              className="w-[370px] h-[460px]  object-cover rounded-xl "
+              className="w-[370px] h-[460px] object-cover rounded-xl transition-transform duration-700 ease-out hover:scale-105"
             />
           </div>
 
@@ -51,7 +54,7 @@ export default function Sobre() {
 
         {/* Barra de gradiente colorida na base */}
         <div className="absolute inset-x-0 bottom-0 h-2 bg-[linear-gradient(to_right,#ECAF00,#B1FF19,#35EF85,#00E9D5,#1195FA,#2656FE,#9509FF)]" />
-      </div>
+      </Reveal>
     </section>
   );
 }

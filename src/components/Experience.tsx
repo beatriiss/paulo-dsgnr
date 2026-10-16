@@ -1,6 +1,7 @@
 // src/components/Experiencia.tsx
 import Image from "next/image";
 import { Fragment } from "react";
+import Reveal from "./Reveal";
 
 const experiencias = [
   {
@@ -56,13 +57,15 @@ const experiencias = [
 export default function Experiencia() {
   return (
     <section id="experiencia" className="px-8 py-16 max-w-6xl mx-auto overflow-hidden">
-      <Image
-        src="/images/titulo-experiencia.webp"
-        alt="Experiência Profissional"
-        width={420}
-        height={38}
-        className="h-8 w-auto mb-18"
-      />
+      <Reveal variant="left">
+        <Image
+          src="/images/titulo-experiencia.webp"
+          alt="Experiência Profissional"
+          width={420}
+          height={38}
+          className="h-8 w-auto mb-18"
+        />
+      </Reveal>
 
       {/* Grid único: coluna 1 = logos (140px), coluna 2 = conteúdo.
           Assim a coluna das logos fica de verdade contínua ao longo de toda a timeline,
@@ -70,7 +73,7 @@ export default function Experiencia() {
       <div className="relative grid grid-cols-[140px_1fr] gap-x-6 gap-y-3">
         {/* Linha vertical, centralizada na coluna das logos (140px / 2 = 70px).
             z-[5] para ficar acima dos dividers horizontais, mas abaixo das logos. */}
-        <div className="absolute left-[130px] top-0 bottom-0 w-px bg-[#00E9E5] z-[5]" />
+        <Reveal variant="grow-y" className="absolute left-[130px] top-0 bottom-0 w-px bg-[#00E9E5] z-[5]" />
         <Image
           src={'/logo2-paulodsgnr.svg'}
           alt={'Logo'}
@@ -85,7 +88,7 @@ export default function Experiencia() {
         {experiencias.map((exp, i) => (
           <Fragment key={exp.empresa}>
             {/* Logo da empresa, centralizada sobre a linha */}
-            <div className="relative z-10 flex justify-center items-start pt-1">
+            <Reveal variant="scale" className="relative z-10 flex justify-center items-start pt-1">
               <div className="px-1">
                 <Image
                   src={exp.logo}
@@ -95,10 +98,10 @@ export default function Experiencia() {
                   className="max-w-[200px] max-h-30 w-auto h-auto object-contain mr-8"
                 />
               </div>
-            </div>
+            </Reveal>
 
             {/* Conteúdo */}
-            <div className="min-w-0">
+            <Reveal variant="right" delay={100} className="min-w-0">
               <div className="flex flex-wrap items-start justify-between gap-3 mb-1">
                 <div>
                   <h3 className="font-display font-bold text-lg leading-tight">
@@ -117,7 +120,7 @@ export default function Experiencia() {
               <p className="text-sm italic text-white/60 leading-relaxed">
                 {exp.descricao}
               </p>
-            </div>
+            </Reveal>
 
             {/* Divider abaixo do item (serve também como "acima" do próximo item) —
                 não aparece depois do último item da lista */}

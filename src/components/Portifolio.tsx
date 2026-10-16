@@ -4,6 +4,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import PortfolioModal, { type ProjetoModal } from "./PortfolioModal";
+import Reveal from "./Reveal";
 
 type Categoria = "Identidade Visual" | "Social Media" | "Sites" | "Design Gráfico";
 
@@ -80,13 +81,15 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className="px-8 py-16 max-w-6xl mx-auto">
-      <Image
-        src="/images/titulo-portifolio.webp"
-        alt="Portfólio"
-        width={280}
-        height={38}
-        className="h-10 w-auto mb-10"
-      />
+      <Reveal variant="left">
+        <Image
+          src="/images/titulo-portifolio.webp"
+          alt="Portfólio"
+          width={280}
+          height={38}
+          className="h-10 w-auto mb-10"
+        />
+      </Reveal>
 
       <div className="flex flex-col gap-14">
         {categorias.map((categoria) => {
@@ -94,12 +97,14 @@ export default function Portfolio() {
 
           return (
             <div key={categoria}>
-              <h3 className="font-display font-bold text-lg mb-5">{categoria}</h3>
+              <Reveal variant="fade">
+                <h3 className="font-display font-bold text-lg mb-5">{categoria}</h3>
+              </Reveal>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {itens.length > 0
-                  ? itens.map((projeto) => (
-                      <div key={projeto.slug} className="group flex flex-col">
+                  ? itens.map((projeto, i) => (
+                      <Reveal key={projeto.slug} delay={(i % 3) * 120} className="group flex flex-col">
                         <button
                           onClick={() =>
                             setProjetoAberto({
@@ -109,7 +114,7 @@ export default function Portfolio() {
                               imagens: projeto.imagens,
                             })
                           }
-                          className="relative aspect-[1890/2355] overflow-hidden rounded-2xl bg-black text-left"
+                          className="relative aspect-[1890/2355] overflow-hidden rounded-2xl bg-black text-left ring-1 ring-white/0 transition-[box-shadow,translate] duration-500 ease-out group-hover:-translate-y-1 group-hover:ring-white/15 group-hover:shadow-[0_20px_50px_-20px_rgba(56,182,255,0.35)]"
                         >
                           <Image
                             src={projeto.capa}
@@ -117,7 +122,7 @@ export default function Portfolio() {
                             fill
                             sizes="(max-width: 768px) 100vw, 33vw"
                             style={{ objectPosition: projeto.capaFoco ?? "center" }}
-                            className="object-cover transition duration-300 group-hover:scale-105"
+                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                           />
                         </button>
 
@@ -130,16 +135,18 @@ export default function Portfolio() {
                             <SetaVerProjeto className="h-2 w-2" />
                           </span>
                         </div>
-                      </div>
+                      </Reveal>
                     ))
                   : // Placeholder para categorias sem material ainda (Sites, Design Gráfico)
                     Array.from({ length: 3 }, (_, i) => (
-                      <div
+                      <Reveal
                         key={i}
+                        variant="fade"
+                        delay={i * 120}
                         className="flex aspect-[1890/2355] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-white/15 text-white/30"
                       >
                         <span className="text-xs">Em breve</span>
-                      </div>
+                      </Reveal>
                     ))}
               </div>
             </div>

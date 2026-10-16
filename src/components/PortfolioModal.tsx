@@ -3,6 +3,7 @@
 
 import Image from "next/image";
 import { useEffect, useCallback, useRef, useState } from "react";
+import Reveal from "./Reveal";
 
 export type ProjetoModal = {
   nome: string;
@@ -73,7 +74,7 @@ function ModalDestaqueBase({
 }) {
   return (
     <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-[#0b0b0b]"
+      className="fixed inset-0 z-50 overflow-y-auto bg-[#0b0b0b] animate-backdrop-in"
       role="dialog"
       aria-modal="true"
       aria-label={projeto.nome}
@@ -106,7 +107,7 @@ function ModalDestaqueBase({
         </svg>
       </RingIconButton>
 
-      <div className="relative mx-auto w-[85%] pb-24 pt-20 sm:pt-28">
+      <div className="relative mx-auto w-[85%] pb-24 pt-20 sm:pt-28 animate-panel-in">
 
         <h2 className="mb-2 font-display text-5xl font-bold leading-none sm:text-7xl">
           {projeto.nome}
@@ -134,19 +135,18 @@ function GaleriaGrid({ projeto }: { projeto: ProjetoModal }) {
   return (
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {projeto.imagens.map((img, i) => (
-        <div
-          key={img}
-          className="overflow-hidden rounded-2xl bg-black/20 transition-transform duration-300 hover:-translate-y-1"
-        >
-          <Image
-            src={img}
-            alt={`${projeto.nome} - imagem ${i + 1}`}
-            width={1000}
-            height={1250}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="h-auto w-full object-contain"
-          />
-        </div>
+        <Reveal key={img} delay={(i % 3) * 100}>
+          <div className="overflow-hidden rounded-2xl bg-black/20 transition-transform duration-300 ease-out hover:-translate-y-1">
+            <Image
+              src={img}
+              alt={`${projeto.nome} - imagem ${i + 1}`}
+              width={1000}
+              height={1250}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="h-auto w-full object-contain"
+            />
+          </div>
+        </Reveal>
       ))}
     </div>
   );
@@ -297,7 +297,7 @@ export default function PortfolioModal({ projeto, onClose }: Props) {
   // Layout padrão (carrossel de 1 imagem por vez) pras demais categorias
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black/80 p-4 backdrop-blur-sm sm:p-8"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black/80 p-4 backdrop-blur-sm sm:p-8 animate-backdrop-in"
       role="dialog"
       aria-modal="true"
       aria-label={projeto.nome}
@@ -305,7 +305,7 @@ export default function PortfolioModal({ projeto, onClose }: Props) {
     >
       <style>{`.no-scrollbar::-webkit-scrollbar { display: none; }`}</style>
       <div
-        className="relative flex w-full max-w-6xl flex-col overflow-hidden rounded-2xl p-[2px] shadow-2xl shadow-black/60"
+        className="relative flex w-full max-w-6xl flex-col overflow-hidden rounded-2xl p-[2px] shadow-2xl shadow-black/60 animate-panel-in"
         style={{ backgroundImage: RAINBOW }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -347,7 +347,8 @@ export default function PortfolioModal({ projeto, onClose }: Props) {
               </div>
             )}
 
-            <div className="relative h-full w-full">
+            {/* key muda a cada imagem, refazendo o fade de entrada */}
+            <div key={indice} className="relative h-full w-full animate-backdrop-in">
               <Image
                 src={projeto.imagens[indice]}
                 alt={`${projeto.nome} - página ${indice + 1}`}

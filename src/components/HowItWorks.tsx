@@ -1,5 +1,6 @@
 // src/components/ComoFunciona.tsx
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 const passos = [
   {
@@ -43,34 +44,37 @@ const passos = [
 export default function ComoFunciona() {
   return (
     <section id="como-funciona" className="px-8 py-16 max-w-6xl mx-auto">
-      <Image
-        src="/images/titulo-como-funciona.webp"
-        alt="Como Funciona"
-        width={400}
-        height={36}
-        className="h-8 w-auto mb-10"
-      />
+      <Reveal variant="left">
+        <Image
+          src="/images/titulo-como-funciona.webp"
+          alt="Como Funciona"
+          width={400}
+          height={36}
+          className="h-8 w-auto mb-10"
+        />
+      </Reveal>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {passos.map((p) => (
-          <div
-            key={p.numero}
-            className="rounded-xl bg-bg p-6 transition-transform duration-300 hover:-translate-y-1"
-            style={{
-              borderStyle: "solid",
-              borderWidth: "3px",
-              borderImageSource: `url('${p.moldura}')`,
-              borderImageSlice: 120,
-              borderImageWidth: "10px",
-              borderImageRepeat: "stretch",
-            }}
-          >
-            <span className="block font-display font-bold text-lg mb-2">{p.numero}</span>
-            <h3 className="font-display font-bold text-xl text-center mb-2">{p.titulo}</h3>
-            <p className="text-sm italic text-white/60 text-center leading-snug">
-              {p.descricao}
-            </p>
-          </div>
+        {passos.map((p, i) => (
+          <Reveal key={p.numero} variant="scale" delay={(i % 3) * 120} className="h-full">
+            <div
+              className="h-full rounded-xl bg-bg p-6 transition-transform duration-300 ease-out hover:-translate-y-1"
+              style={{
+                borderStyle: "solid",
+                borderWidth: "3px",
+                borderImageSource: `url('${p.moldura}')`,
+                borderImageSlice: 120,
+                borderImageWidth: "10px",
+                borderImageRepeat: "stretch",
+              }}
+            >
+              <span className="block font-display font-bold text-lg mb-2">{p.numero}</span>
+              <h3 className="font-display font-bold text-xl text-center mb-2">{p.titulo}</h3>
+              <p className="text-sm italic text-white/60 text-center leading-snug">
+                {p.descricao}
+              </p>
+            </div>
+          </Reveal>
         ))}
       </div>
     </section>

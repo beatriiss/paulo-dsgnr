@@ -1,5 +1,6 @@
 // src/components/Contato.tsx
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 // Ajuste aqui o número (formato: código do país + DDD + número, só dígitos)
 const WHATSAPP_NUMERO = "5575992197861";
@@ -22,7 +23,7 @@ export default function Contato() {
                     className="absolute top-0 left-1/2 -translate-x-1/2 w-screen h-1 object-cover"
                 />
 
-                <div className="relative max-w-5xl mx-auto flex flex-col items-center">
+                <Reveal className="relative max-w-5xl mx-auto flex flex-col items-center">
                     <Image
                         src="/images/bora-conversar.svg"
                         alt="Bora conversar"
@@ -47,7 +48,7 @@ export default function Contato() {
                         href={WHATSAPP_LINK}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-black transition-transform hover:scale-105"
+                        className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-black transition-transform duration-300 ease-out hover:scale-105 active:scale-95"
                     >
                     <Image
                         src="/images/wpp-button-contact.svg"
@@ -60,7 +61,7 @@ export default function Contato() {
                     <p className="text-md text-white/70 mt-4">
                        Respondo pelo whatsapp. É mais rápido assim.
                     </p>
-                </div>
+                </Reveal>
 
                 <Image
                     src="/images/linha-gradiente-maior.webp"
