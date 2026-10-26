@@ -19,7 +19,7 @@ export default function Home() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10 pointer-events-none" aria-hidden="true">
           <Image
-            src="/images/background-hero.webp"
+            src="/images/fundos/hero.webp"
             alt=""
             fill
             priority
@@ -39,7 +39,7 @@ export default function Home() {
       <div className="relative overflow-hidden">
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-[url('/images/background-full-site.svg')] bg-cover bg-center bg-no-repeat bg-bg"
+          className="absolute inset-0 -z-10 bg-[url('/images/fundos/site.svg')] bg-cover bg-center bg-no-repeat bg-bg"
         />
 
         <Stats />

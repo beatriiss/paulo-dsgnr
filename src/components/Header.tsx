@@ -87,7 +87,7 @@ export default function Header() {
             {/* Logo posicionada fora do fluxo, responsiva */}
             <div className="absolute top-1 sm:top-10 left-5 sm:left-16 z-50 w-[140px] sm:w-[188px] md:w-[187px] lg:w-[354px]">
                 <Image
-                    src="/images/logo-paulodsgnr.svg"
+                    src="/images/marca/logo.svg"
                     alt="Paulo Dsgnr"
                     width={480}
                     height={242}
@@ -99,7 +99,7 @@ export default function Header() {
             {/* linha gradiente na altura padrão do header */}
             <div>
                 <Image
-                    src="/images/linha-gradiente-menor.webp"
+                    src="/images/decoracao/linha-gradiente-menor.webp"
                     alt=""
                     width={1170}
                     height={8}

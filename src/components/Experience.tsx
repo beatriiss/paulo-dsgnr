@@ -59,7 +59,7 @@ export default function Experiencia() {
     <section id="experiencia" className="px-8 py-16 max-w-6xl mx-auto overflow-hidden">
       <Reveal variant="left">
         <Image
-          src="/images/titulo-experiencia.webp"
+          src="/images/titulos/experiencia.webp"
           alt="Experiência Profissional"
           width={420}
           height={38}
@@ -75,7 +75,7 @@ export default function Experiencia() {
             z-[5] para ficar acima dos dividers horizontais, mas abaixo das logos. */}
         <Reveal variant="grow-y" className="absolute left-[130px] top-0 bottom-0 w-px bg-[#00E9E5] z-[5]" />
         <Image
-          src={'/logo2-paulodsgnr.svg'}
+          src={'/images/marca/logo-simbolo.svg'}
           alt={'Logo'}
           width={120}
           height={60}

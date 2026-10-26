@@ -7,22 +7,22 @@ const stats = [
   {
     label: "ANOS DE EXPERIÊNCIA",
     value: "15+",
-    icon: "/images/icons/icon-anos-experiencia.webp",
+    icon: "/images/icones/stats/anos-experiencia.webp",
   },
   {
     label: "PROJETOS ENTREGUES",
     value: "820+",
-    icon: "/images/icons/icon-projetos-entregues.webp",
+    icon: "/images/icones/stats/projetos-entregues.webp",
   },
   {
     label: "TROFÉUS NO CLASH ROYALE",
     value: "14.000+",
-    icon: "/images/icons/icon-trofeus-clash-royale.webp",
+    icon: "/images/icones/stats/trofeus-clash-royale.webp",
   },
   {
     label: "TRABALHO REMOTO",
     value: "100%",
-    icon: "/images/icons/icon-trabalho-remoto.webp",
+    icon: "/images/icones/stats/trabalho-remoto.webp",
   },
 ];
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { WHATSAPP_LINK, EMAIL_LINK } from "@/lib/contato";
 import { MapPin, Mail, Phone, Download, Send } from "lucide-react";
 
 export default function Hero() {
@@ -17,7 +18,7 @@ export default function Hero() {
       {/* Foto */}
       <div className="relative flex justify-center lg:ml-[220px] -mt-14 transition-transform duration-500 ease-out hover:scale-105 animate-enter [--enter-delay:100ms]">
         <Image
-          src="/images/image-hero.png"
+          src="/images/hero/paulo.png"
           alt="Paulo Vinícius"
           width={500}
           height={620}
@@ -90,7 +91,7 @@ export default function Hero() {
           {/* Brasil */}
           <div className="flex items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1">
             <Image
-              src="/images/button-loc.svg"
+              src="/images/botoes/localizacao.svg"
               alt="Localização"
               width={180}
               height={120}
@@ -99,26 +100,36 @@ export default function Hero() {
           </div>
 
           {/* E-mail */}
-          <div className="flex items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1">
+          <a
+            href={EMAIL_LINK}
+            aria-label="Enviar e-mail para dsgnr.paulo@gmail.com"
+            className="flex items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1"
+          >
             <Image
-              src="/images/button-email.svg"
+              src="/images/botoes/email.svg"
               alt="E-mail"
               width={290}
               height={170}
               className="h-16 w-auto"
             />
-          </div>
+          </a>
 
           {/* WhatsApp */}
-          <div className="flex items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Conversar no WhatsApp"
+            className="flex items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1"
+          >
             <Image
-              src="/images/button-wpp.svg"
+              src="/images/botoes/whatsapp.svg"
               alt="WhatsApp"
               width={310}
               height={190}
               className="h-16 w-auto"
             />
-          </div>
+          </a>
 
         </div>
 
@@ -130,7 +141,7 @@ export default function Hero() {
           className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors mb-6 w-fit animate-enter [--enter-delay:700ms]"
         >
           <Image
-            src="/images/linkedin-icon.webp"
+            src="/images/icones/linkedin.webp"
             alt="LinkedIn"
             width={15}
             height={15}
@@ -146,27 +157,38 @@ export default function Hero() {
 
           {/* BAIXAR CURRÍCULO — MANTÉM CONTORNO */}
           <div>
-            <button className="transition-transform duration-300 ease-out hover:-translate-y-1">
+            <a
+              href="/docs/curriculo-paulo-vinicius.pdf"
+              download="Curriculo - Paulo Vinicius Designer.pdf"
+              aria-label="Baixar currículo (PDF)"
+              className="inline-block transition-transform duration-300 ease-out hover:-translate-y-1"
+            >
               <Image
-                src="/images/button-curriculo.svg"
-                alt="WhatsApp"
+                src="/images/botoes/curriculo.svg"
+                alt="Baixar currículo"
                 width={310}
                 height={190}
                 className="h-11 w-auto"
               />
-            </button>
+            </a>
           </div>
 
           {/* ENTRAR EM CONTATO */}
-          <button className="-mt-1 transition-transform duration-300 ease-out hover:-translate-y-1">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Entrar em contato pelo WhatsApp"
+            className="-mt-1 inline-block transition-transform duration-300 ease-out hover:-translate-y-1"
+          >
             <Image
-              src="/images/button-contact.svg"
-              alt="WhatsApp"
+              src="/images/botoes/contato.svg"
+              alt="Entrar em contato"
               width={310}
               height={190}
               className="h-11 w-auto"
             />
-          </button>
+          </a>
 
         </div>
       </div>
@@ -179,7 +201,7 @@ export default function Hero() {
         {/* Wrapper só pra flutuação, separado da animação de entrada */}
         <div className="animate-float">
           <Image
-            src="/images/image-02-hero.png"
+            src="/images/hero/mockup-dispositivos.png"
             alt="Preview do site em tablet e celular"
             width={350}
             height={325}
@@ -190,7 +212,7 @@ export default function Hero() {
 
       {/* Linha gradiente */}
       <Image
-        src="/images/linha-gradiente-maior.webp"
+        src="/images/decoracao/linha-gradiente-maior.webp"
         alt=""
         width={2000}
         height={8}

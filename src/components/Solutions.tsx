@@ -4,7 +4,7 @@ import Reveal from "./Reveal";
 
 const solucoes = [
   {
-    icon: "/images/identidade-visual.svg",
+    icon: "/images/icones/solucoes/identidade-visual.svg",
     title: "IDENTIDADE\nVISUAL",
     items: [
       "Criação de logotipo",
@@ -19,7 +19,7 @@ const solucoes = [
     ],
   },
   {
-    icon: "/images/websites.svg",
+    icon: "/images/icones/solucoes/websites.svg",
     title: "WEBSITES E\nLANDING PAGES",
     items: [
       "Layout de sites",
@@ -31,7 +31,7 @@ const solucoes = [
     ],
   },
   {
-    icon: "/images/social-media.svg",
+    icon: "/images/icones/solucoes/social-media.svg",
     title: "SOCIAL MEDIA",
     items: [
       "Posts para Instagram",
@@ -44,7 +44,7 @@ const solucoes = [
     ],
   },
   {
-    icon: "/images/impressao-grafica.svg",
+    icon: "/images/icones/solucoes/impressao-grafica.svg",
     title: "IMPRESSÃO\nGRÁFICA",
     items: [
       "Flyers",
@@ -58,7 +58,7 @@ const solucoes = [
     ],
   },
   {
-    icon: "/images/comunicacao-visual.svg",
+    icon: "/images/icones/solucoes/comunicacao-visual.svg",
     title: "COMUNICAÇÃO\nVISUAL",
     items: [
       "Fachadas",
@@ -72,7 +72,7 @@ const solucoes = [
     ],
   },
   {
-    icon: "/images/arte-vetorizacao.svg",
+    icon: "/images/icones/solucoes/arte-vetorizacao.svg",
     title: "ARTE FINAL E\nVETORIZAÇÃO",
     items: ["Criação de arte final", "Vetorização de logotipo", "Rótulos e Embalagens"],
   },
@@ -83,7 +83,7 @@ export default function Solucoes() {
     <section id="solucoes" className="px-8 py-16 max-w-6xl mx-auto">
       <Reveal variant="left">
         <Image
-          src="/images/titulo-solucoes.webp"
+          src="/images/titulos/solucoes.webp"
           alt="Soluções"
           width={350}
           height={76}

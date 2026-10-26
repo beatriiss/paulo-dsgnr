@@ -45,11 +45,21 @@ const projetos: Projeto[] = [
     slug: "dulub-social-media",
     nome: "DULUB - Tecnologia Fluida",
     categoria: "Social Media",
-    capa: "/images/portfolio/social-media/dulub/capa-social-media-dolub.webp",
+    capa: "/images/portfolio/social-media/dulub/capa.webp",
     imagens: gerarPaginas("/images/portfolio/social-media/dulub", 25, "jpg"),
     // TODO: troque por um texto real sobre o projeto — este é só um placeholder
     descricao:
       "O desafio era sair do lugar comum técnico e construir uma comunicação com mais confiança. A direção visual foi pensada para traduzir a tecnologia fluida da marca em uma linguagem mais acessível, direta e profissional, aproximando a DULUB do mecânico, do lojista e do consumidor final. O resultado é um feed mais consistente, estratégico e com mais autoridade no segmento.",
+  },
+  {
+    slug: "vanessa-paula-social-media",
+    nome: "Vanessa Paula - Fisioterapia Estética",
+    categoria: "Social Media",
+    capa: "/images/portfolio/social-media/vanessa-paula/capa.png",
+    imagens: gerarPaginas("/images/portfolio/social-media/vanessa-paula", 16, "png"),
+    // TODO: troque por um texto real sobre o projeto — este é só um placeholder
+    descricao:
+      "O desafio era traduzir a expertise em fisioterapia estética para uma comunicação mais próxima e acessível, sem perder o rigor profissional. A identidade visual em tons de rosa foi desenvolvida para acolher e educar, apresentando procedimentos como skin booster e suplementação com leveza e confiança. O resultado é um feed que reforça o autocuidado e posiciona a Vanessa Paula como referência no segmento.",
   },
 ];
 
@@ -83,7 +93,7 @@ export default function Portfolio() {
     <section id="portfolio" className="px-8 py-16 max-w-6xl mx-auto">
       <Reveal variant="left">
         <Image
-          src="/images/titulo-portifolio.webp"
+          src="/images/titulos/portfolio.webp"
           alt="Portfólio"
           width={280}
           height={38}
