@@ -17,6 +17,7 @@ const es: Dictionary = {
       experience: "EXPERIENCIA",
     },
     budget: "PRESUPUESTO",
+    budgetAria: "Pedir presupuesto por WhatsApp",
     openMenu: "Abrir menú",
     closeMenu: "Cerrar menú",
     logoAlt: "Paulo Dsgnr",
@@ -24,6 +25,7 @@ const es: Dictionary = {
 
   hero: {
     greeting: "Hola, soy",
+    languageLabel: "IDIOMA",
     services: [
       ["IDENTIDAD", " VISUAL"],
       ["SOCIAL", " MEDIA"],
@@ -232,6 +234,7 @@ const es: Dictionary = {
 
   messages: {
     whatsapp: "¡Hola Paulo! Vi tu sitio y quiero hablar sobre un proyecto.",
+    budget: "¡Hola Paulo! Vi tu sitio y me gustaría pedir un presupuesto.",
     emailSubject: "Proyecto desde tu sitio web",
     emailBody: "¡Hola Paulo! Vi tu sitio y quiero hablar sobre un proyecto.",
   },

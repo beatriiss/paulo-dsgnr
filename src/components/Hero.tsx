@@ -18,7 +18,7 @@ export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
   return (
     <section className="relative px-5 sm:px-8 py-8 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center overflow-visible mt-6 sm:mt-10 lg:mt-12">
       {/* Foto */}
-      <div className="relative flex justify-center lg:ml-[220px] lg:-mt-14 transition-transform duration-500 ease-out hover:scale-105 animate-enter [--enter-delay:100ms]">
+      <div className="relative flex justify-center lg:ml-[220px] lg:-mt-14 animate-enter [--enter-delay:100ms]">
         <Image
           src="/images/hero/paulo.png"
           alt={dict.photoAlt}
@@ -33,7 +33,7 @@ export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
       <div className="w-full max-w-xl mx-auto lg:mx-0 lg:max-w-none lg:-ml-20 lg:scale-[0.93]">
 
         {/* Seletor de idioma */}
-        <LanguageSwitcher lang={lang} className="mb-6 animate-enter [--enter-delay:200ms]" />
+        <LanguageSwitcher lang={lang} label={dict.languageLabel} className="mb-6 animate-enter [--enter-delay:200ms]" />
 
         {/* Saudação */}
         <p className="text-sm mb-2 bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent w-fit animate-enter [--enter-delay:300ms]">
@@ -62,7 +62,7 @@ export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
         </p>
 
         {/* Descrição */}
-        <p className="text-white text-[14px] italic font-bold leading-tight max-w-md mb-6 animate-enter [--enter-delay:540ms]">
+        <p className="text-white/80 text-[15px] sm:text-base italic leading-relaxed max-w-lg mb-6 animate-enter [--enter-delay:540ms]">
           {dict.description}
         </p>
 
@@ -97,7 +97,8 @@ export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
           href="https://linkedin.com/in/paulo-designer-928656239/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 max-w-full break-all text-xs sm:text-sm text-white/70 hover:text-white transition-colors mb-6 w-fit animate-enter [--enter-delay:700ms]"
+          aria-label="LinkedIn: paulo-designer"
+          className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors mb-6 w-fit animate-enter [--enter-delay:700ms]"
         >
           <Image
             src="/images/icones/linkedin.webp"
@@ -107,7 +108,7 @@ export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
             className="shrink-0"
           />
 
-          linkedin.com/in/paulo-designer-928656239/
+          /in/paulo-designer
         </a>
 
         {/* =====================================================
@@ -127,6 +128,7 @@ export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
             label={dict.contact}
             ariaLabel={dict.contactAria}
             icon={<Send size={18} color="#2F6BFF" />}
+            variant="primary"
           />
         </div>
       </div>

@@ -19,6 +19,7 @@ const pt = {
       experience: "EXPERIÊNCIA",
     },
     budget: "ORÇAMENTO",
+    budgetAria: "Pedir orçamento pelo WhatsApp",
     openMenu: "Abrir menu",
     closeMenu: "Fechar menu",
     logoAlt: "Paulo Dsgnr",
@@ -26,6 +27,7 @@ const pt = {
 
   hero: {
     greeting: "Olá, eu sou",
+    languageLabel: "IDIOMA",
     // [parte em negrito, resto] — ex: IDENTIDADE (negrito) + " VISUAL"
     services: [
       ["IDENTIDADE", " VISUAL"],
@@ -240,6 +242,7 @@ const pt = {
   // Mensagens que já vão preenchidas no WhatsApp e no e-mail
   messages: {
     whatsapp: "Olá Paulo, vi seu site e quero conversar sobre um projeto!",
+    budget: "Olá Paulo, vi seu site e gostaria de pedir um orçamento!",
     emailSubject: "Projeto pelo site",
     emailBody: "Olá Paulo, vi seu site e quero conversar sobre um projeto!",
   },

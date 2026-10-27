@@ -1,15 +1,18 @@
 // src/components/Header.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { FaInstagram } from "react-icons/fa6";
 import { HiMenu, HiX } from "react-icons/hi";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/pt";
 
-export default function Header({ dict }: { dict: Dictionary["header"]; lang: Locale }) {
+export default function Header({ dict, budgetHref }: { dict: Dictionary["header"]; lang: Locale; budgetHref: string }) {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [lineLeft, setLineLeft] = useState<number | null>(null);
+    const headerRef = useRef<HTMLElement>(null);
+    const navRef = useRef<HTMLElement>(null);
 
     // Cada link aponta pro id da seção correspondente (ver os componentes:
     // AboutMe id="sobre-mim", Solutions id="solucoes", Portifolio id="portfolio",
@@ -34,18 +37,40 @@ export default function Header({ dict }: { dict: Dictionary["header"]; lang: Loc
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [menuOpen]);
 
+    // Mede a posição do nav desktop para a linha gradiente começar no primeiro link.
+    // O nav é centralizado, então a posição muda com a largura da tela.
+    useEffect(() => {
+        const header = headerRef.current;
+        const nav = navRef.current;
+        if (!header || !nav) return;
+
+        const updateLineLeft = () => {
+            if (window.matchMedia("(min-width: 1024px)").matches) {
+                setLineLeft(nav.getBoundingClientRect().left - header.getBoundingClientRect().left);
+            } else {
+                setLineLeft(null);
+            }
+        };
+
+        const observer = new ResizeObserver(updateLineLeft);
+        observer.observe(header);
+        observer.observe(nav);
+
+        return () => observer.disconnect();
+    }, []);
+
     // Classes de entrada em cascata dos itens do menu mobile
     const itemAnim = menuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2";
     const itemDelay = (i: number) => ({ transitionDelay: menuOpen ? `${80 + i * 50}ms` : "0ms" });
 
     return (
-        <header className="relative z-50">
+        <header ref={headerRef} className="relative z-50">
             <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-5">
                 {/* Espaço reservado pro tamanho da logo, responsivo */}
                 <div className="w-28 sm:w-40 lg:w-56 shrink-0 h-[60px] sm:h-[80px] lg:h-auto" />
 
                 {/* Nav desktop */}
-                <nav className="hidden lg:flex items-center gap-6 text-base font-medium text-white/80">
+                <nav ref={navRef} className="hidden lg:flex items-center gap-6 text-base font-medium text-white/80">
                     {links.map((link) => (
                         <a key={link.href} href={link.href} className="nav-link hover:text-white transition-colors">
                             {link.label}
@@ -66,9 +91,15 @@ export default function Header({ dict }: { dict: Dictionary["header"]; lang: Loc
                     </a>
 
                     <div className="hidden sm:block rounded-md p-[1.5px] bg-[linear-gradient(to_right,var(--color-accent-blue),var(--color-accent-purple))]">
-                        <button className="rounded-[5px] bg-black px-3 lg:px-5 py-2 text-sm lg:text-base font-medium text-white hover:bg-[linear-gradient(to_right,var(--color-accent-blue),var(--color-accent-purple))] hover:text-black transition-colors w-full h-full">
+                        <a
+                            href={budgetHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={dict.budgetAria}
+                            className="block rounded-[5px] bg-black px-3 lg:px-5 py-2 text-sm lg:text-base font-medium text-white hover:bg-[linear-gradient(to_right,var(--color-accent-blue),var(--color-accent-purple))] hover:text-black transition-colors w-full h-full text-center"
+                        >
                             {dict.budget}
-                        </button>
+                        </a>
                     </div>
 
                     {/* Botão hambúrguer - só mobile/tablet */}
@@ -98,14 +129,15 @@ export default function Header({ dict }: { dict: Dictionary["header"]; lang: Loc
                 />
             </div>
 
-            {/* linha gradiente na altura padrão do header */}
+            {/* linha gradiente: no desktop começa no primeiro link do menu, abaixo de lg ocupa a largura toda */}
             <div>
                 <Image
                     src="/images/decoracao/linha-gradiente-menor.webp"
                     alt=""
                     width={1170}
                     height={8}
-                    className="absolute bottom-0 right-0 h-1 w-full object-fill lg:w-auto lg:object-cover"
+                    className={`absolute bottom-0 right-0 h-1 w-full object-fill transition-opacity duration-300${lineLeft === null ? " lg:opacity-0" : ""}`}
+                    style={lineLeft !== null ? { width: `calc(100% - ${lineLeft}px)` } : undefined}
                 />
             </div>
 
@@ -145,12 +177,17 @@ export default function Header({ dict }: { dict: Dictionary["header"]; lang: Loc
                             className={`rounded-lg p-[1.5px] bg-[linear-gradient(to_right,var(--color-accent-blue),var(--color-accent-purple))] mt-2 transition-[opacity,transform] duration-500 ${itemAnim}`}
                             style={itemDelay(links.length + 1)}
                         >
-                            <button
-                                className="rounded-[6.5px] bg-black px-5 py-2.5 text-base font-medium text-white w-full h-full transition-colors hover:bg-[linear-gradient(to_right,var(--color-accent-blue),var(--color-accent-purple))] hover:text-black"
+                            <a
+                                href={budgetHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={dict.budgetAria}
+                                onClick={() => setMenuOpen(false)}
                                 tabIndex={menuOpen ? 0 : -1}
+                                className="block rounded-[6.5px] bg-black px-5 py-2.5 text-base font-medium text-white w-full h-full transition-colors hover:bg-[linear-gradient(to_right,var(--color-accent-blue),var(--color-accent-purple))] hover:text-black text-center"
                             >
                                 {dict.budget}
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
