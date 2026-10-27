@@ -16,21 +16,21 @@ type Props = {
 
 export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
   return (
-    <section className="relative px-8 py-8 grid lg:grid-cols-2 gap-12 items-center overflow-visible mt-12">
+    <section className="relative px-5 sm:px-8 py-8 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center overflow-visible mt-6 sm:mt-10 lg:mt-12">
       {/* Foto */}
-      <div className="relative flex justify-center lg:ml-[220px] -mt-14 transition-transform duration-500 ease-out hover:scale-105 animate-enter [--enter-delay:100ms]">
+      <div className="relative flex justify-center lg:ml-[220px] lg:-mt-14 transition-transform duration-500 ease-out hover:scale-105 animate-enter [--enter-delay:100ms]">
         <Image
           src="/images/hero/paulo.png"
           alt={dict.photoAlt}
           width={500}
           height={620}
           priority
-          className="relative w-full max-w-[490px] h-auto object-contain z-10"
+          className="relative w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[490px] h-auto object-contain z-10"
         />
       </div>
 
       {/* Texto */}
-      <div className="-ml-20 scale-[0.93]">
+      <div className="w-full max-w-xl mx-auto lg:mx-0 lg:max-w-none lg:-ml-20 lg:scale-[0.93]">
 
         {/* Seletor de idioma */}
         <LanguageSwitcher lang={lang} className="mb-6 animate-enter [--enter-delay:200ms]" />
@@ -41,7 +41,7 @@ export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
         </p>
 
         {/* Nome */}
-        <h1 className="font-display font-bold text-6xl leading-none mb-4 animate-enter [--enter-delay:380ms]">
+        <h1 className="font-display font-bold text-5xl sm:text-6xl leading-none mb-4 animate-enter [--enter-delay:380ms]">
           PAULO
           <br />
 
@@ -69,7 +69,7 @@ export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
         {/* =====================================================
             CONTATOS
         ====================================================== */}
-        <div className="flex flex-wrap items-center gap-6 mb-4 animate-enter [--enter-delay:620ms]">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-6 mb-4 animate-enter [--enter-delay:620ms]">
           <ContactBadge
             icon={<MapPin size={26} strokeWidth={1.75} color="#00E9D5" />}
             title={dict.location.title}
@@ -97,13 +97,14 @@ export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
           href="https://linkedin.com/in/paulo-designer-928656239/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors mb-6 w-fit animate-enter [--enter-delay:700ms]"
+          className="flex items-center gap-2 max-w-full break-all text-xs sm:text-sm text-white/70 hover:text-white transition-colors mb-6 w-fit animate-enter [--enter-delay:700ms]"
         >
           <Image
             src="/images/icones/linkedin.webp"
             alt="LinkedIn"
             width={15}
             height={15}
+            className="shrink-0"
           />
 
           linkedin.com/in/paulo-designer-928656239/
@@ -112,7 +113,7 @@ export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
         {/* =====================================================
             BOTÕES
         ====================================================== */}
-        <div className="flex flex-wrap items-center gap-4 animate-enter [--enter-delay:780ms]">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-4 animate-enter [--enter-delay:780ms]">
           <ActionButton
             href="/docs/curriculo-paulo-vinicius.pdf"
             download="Curriculo - Paulo Vinicius Designer.pdf"
@@ -138,7 +139,7 @@ export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
         {/* Wrapper só pra flutuação, separado da animação de entrada */}
         <div className="animate-float">
           <Image
-            src="/images/hero/mockup-dispositivos.png"
+            src="/images/hero/hero.png"
             alt={dict.mockupAlt}
             width={350}
             height={325}
@@ -153,7 +154,7 @@ export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
         alt=""
         width={2000}
         height={8}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-screen h-1 object-cover"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-screen h-1 object-fill lg:object-cover"
       />
     </section>
   );

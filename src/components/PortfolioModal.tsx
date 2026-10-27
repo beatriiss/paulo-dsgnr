@@ -103,7 +103,7 @@ function ModalDestaqueBase({
       <RingIconButton
         onClick={onClose}
         ariaLabel={labels.close}
-        className="!fixed !top-6 !right-6 z-20"
+        className="!fixed !top-4 !right-4 sm:!top-6 sm:!right-6 z-20"
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
           <path
@@ -115,16 +115,16 @@ function ModalDestaqueBase({
         </svg>
       </RingIconButton>
 
-      <div className="relative mx-auto w-[85%] pb-24 pt-20 sm:pt-28 animate-panel-in">
+      <div className="relative mx-auto w-[90%] sm:w-[85%] pb-16 sm:pb-24 pt-20 sm:pt-28 animate-panel-in">
 
-        <h2 className="mb-2 font-display text-5xl font-bold leading-none sm:text-7xl">
+        <h2 className="mb-2 font-display text-4xl font-bold leading-none break-words sm:text-6xl lg:text-7xl">
           {projeto.nome}
         </h2>
         <p className="mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-accent-orange sm:text-base">
           {projeto.categoriaLabel}
         </p>
         {projeto.descricao && (
-          <p className="mb-14 max-w-6xl text-lg leading-relaxed text-white/70 sm:text-xl">
+          <p className="mb-8 sm:mb-14 max-w-6xl text-base leading-relaxed text-white/70 sm:text-xl">
             {projeto.descricao}
           </p>
         )}

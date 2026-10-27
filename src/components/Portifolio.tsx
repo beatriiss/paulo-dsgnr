@@ -90,7 +90,7 @@ export default function Portfolio({ dict }: { dict: Dictionary["portfolio"] }) {
   const [projetoAberto, setProjetoAberto] = useState<ProjetoModal | null>(null);
 
   return (
-    <section id="portfolio" className="px-8 py-16 max-w-6xl mx-auto">
+    <section id="portfolio" className="px-5 sm:px-8 py-12 sm:py-16 max-w-6xl mx-auto">
       <Reveal variant="left">
         <SectionTitle className="mb-10">{dict.title}</SectionTitle>
       </Reveal>
@@ -153,7 +153,7 @@ export default function Portfolio({ dict }: { dict: Dictionary["portfolio"] }) {
                         key={i}
                         variant="fade"
                         delay={i * 120}
-                        className="flex aspect-[1890/2355] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-white/15 text-white/30"
+                        className={`${i === 2 ? "hidden lg:flex" : "flex"} aspect-[1890/2355] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-white/15 text-white/30`}
                       >
                         <span className="text-xs">{dict.comingSoon}</span>
                       </Reveal>

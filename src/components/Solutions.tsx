@@ -16,12 +16,12 @@ const icones = [
 
 export default function Solucoes({ dict }: { dict: Dictionary["solutions"] }) {
   return (
-    <section id="solucoes" className="px-8 py-16 max-w-6xl mx-auto">
+    <section id="solucoes" className="px-5 sm:px-8 py-12 sm:py-16 max-w-6xl mx-auto">
       <Reveal variant="left">
         <SectionTitle className="mb-10">{dict.title}</SectionTitle>
       </Reveal>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 sm:gap-y-12">
         {dict.items.map((s, i) => (
           <Reveal key={icones[i]} delay={(i % 3) * 120}>
             <div className="group flex gap-4 transition-transform duration-300 ease-out hover:-translate-y-1">
