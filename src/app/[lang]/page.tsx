@@ -22,6 +22,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   // Mensagens pré-preenchidas no idioma da página
   const whatsappHref = whatsappLink(dict.messages.whatsapp);
   const emailHref = emailLink(dict.messages.emailSubject, dict.messages.emailBody);
+  const budgetHref = whatsappLink(dict.messages.budget);
 
   return (
     <main>
@@ -41,7 +42,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bg" />
         </div>
 
-        <Header dict={dict.header} lang={lang} />
+        <Header dict={dict.header} lang={lang} budgetHref={budgetHref} />
         <Hero dict={dict.hero} lang={lang} whatsappHref={whatsappHref} emailHref={emailHref} />
       </div>
 

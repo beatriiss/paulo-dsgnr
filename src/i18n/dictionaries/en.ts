@@ -17,6 +17,7 @@ const en: Dictionary = {
       experience: "EXPERIENCE",
     },
     budget: "GET A QUOTE",
+    budgetAria: "Request a quote on WhatsApp",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     logoAlt: "Paulo Dsgnr",
@@ -24,6 +25,7 @@ const en: Dictionary = {
 
   hero: {
     greeting: "Hello, I'm",
+    languageLabel: "LANGUAGE",
     services: [
       ["BRAND", " IDENTITY"],
       ["SOCIAL", " MEDIA"],
@@ -232,6 +234,7 @@ const en: Dictionary = {
 
   messages: {
     whatsapp: "Hi Paulo, I saw your website and I'd like to talk about a project!",
+    budget: "Hi Paulo, I saw your website and I'd like to request a quote!",
     emailSubject: "Project inquiry from your website",
     emailBody: "Hi Paulo, I saw your website and I'd like to talk about a project!",
   },
