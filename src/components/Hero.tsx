@@ -1,25 +1,27 @@
+// src/components/Hero.tsx
 import Image from "next/image";
-import { WHATSAPP_LINK, EMAIL_LINK } from "@/lib/contato";
 import { MapPin, Mail, Phone, Download, Send } from "lucide-react";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries/pt";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import ActionButton from "@/components/ui/ActionButton";
+import ContactBadge from "@/components/ui/ContactBadge";
 
-export default function Hero() {
+type Props = {
+  dict: Dictionary["hero"];
+  lang: Locale;
+  whatsappHref: string;
+  emailHref: string;
+};
+
+export default function Hero({ dict, lang, whatsappHref, emailHref }: Props) {
   return (
     <section className="relative px-8 py-8 grid lg:grid-cols-2 gap-12 items-center overflow-visible mt-12">
-      {/* Definição do gradiente usado nos ícones SVG */}
-      <svg width="0" height="0" className="absolute">
-        <defs>
-          <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="var(--color-accent-green)" />
-            <stop offset="100%" stopColor="var(--color-accent-blue)" />
-          </linearGradient>
-        </defs>
-      </svg>
-
       {/* Foto */}
       <div className="relative flex justify-center lg:ml-[220px] -mt-14 transition-transform duration-500 ease-out hover:scale-105 animate-enter [--enter-delay:100ms]">
         <Image
           src="/images/hero/paulo.png"
-          alt="Paulo Vinícius"
+          alt={dict.photoAlt}
           width={500}
           height={620}
           priority
@@ -31,29 +33,11 @@ export default function Hero() {
       <div className="-ml-20 scale-[0.93]">
 
         {/* Seletor de idioma */}
-        <div className="flex items-center gap-2 text-xs text-white/60 mb-6 animate-enter [--enter-delay:200ms]">
-          <span className="tracking-widest">SELECT LANGUAGE:</span>
-
-          <button className="font-semibold bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent">
-            PT
-          </button>
-
-          <span className="text-white/30">/</span>
-
-          <button className="hover:text-white transition-colors">
-            EN
-          </button>
-
-          <span className="text-white/30">/</span>
-
-          <button className="hover:text-white transition-colors">
-            ES
-          </button>
-        </div>
+        <LanguageSwitcher lang={lang} className="mb-6 animate-enter [--enter-delay:200ms]" />
 
         {/* Saudação */}
         <p className="text-sm mb-2 bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent w-fit animate-enter [--enter-delay:300ms]">
-          ● Olá, eu sou
+          ● {dict.greeting}
         </p>
 
         {/* Nome */}
@@ -68,69 +52,44 @@ export default function Hero() {
 
         {/* Serviços */}
         <p className="text-sm text-white/60 mb-4 tracking-wide animate-enter [--enter-delay:460ms]">
-          <span className="font-bold text-white">IDENTIDADE</span> VISUAL ·{" "}
-          <span className="font-bold text-white">SOCIAL</span> MEDIA ·{" "}
-          <span className="font-bold text-white">WEB</span>SITES ·{" "}
-          <span className="font-bold text-white">DESIGN</span> GRÁFICO
+          {dict.services.map(([negrito, resto], i) => (
+            <span key={i}>
+              <span className="font-bold text-white">{negrito}</span>
+              {resto}
+              {i < dict.services.length - 1 && " · "}
+            </span>
+          ))}
         </p>
 
         {/* Descrição */}
         <p className="text-white text-[14px] italic font-bold leading-tight max-w-md mb-6 animate-enter [--enter-delay:540ms]">
-          Sou designer gráfico com mais de 15 anos de experiência no
-          desenvolvimento de marcas, materiais gráficos, conteúdo para redes
-          sociais e soluções digitais para empresas. Meu propósito é criar
-          projetos que fortalecem a imagem do negócio e ajudam empresas a se
-          posicionarem de forma profissional no mercado.
+          {dict.description}
         </p>
 
         {/* =====================================================
-            CONTATOS — SEM CONTORNO
+            CONTATOS
         ====================================================== */}
         <div className="flex flex-wrap items-center gap-6 mb-4 animate-enter [--enter-delay:620ms]">
-
-          {/* Brasil */}
-          <div className="flex items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1">
-            <Image
-              src="/images/botoes/localizacao.svg"
-              alt="Localização"
-              width={180}
-              height={120}
-              className="h-16 w-auto"
-            />
-          </div>
-
-          {/* E-mail */}
-          <a
-            href={EMAIL_LINK}
-            aria-label="Enviar e-mail para dsgnr.paulo@gmail.com"
-            className="flex items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1"
-          >
-            <Image
-              src="/images/botoes/email.svg"
-              alt="E-mail"
-              width={290}
-              height={170}
-              className="h-16 w-auto"
-            />
-          </a>
-
-          {/* WhatsApp */}
-          <a
-            href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Conversar no WhatsApp"
-            className="flex items-center gap-2 transition-transform duration-300 ease-out hover:-translate-y-1"
-          >
-            <Image
-              src="/images/botoes/whatsapp.svg"
-              alt="WhatsApp"
-              width={310}
-              height={190}
-              className="h-16 w-auto"
-            />
-          </a>
-
+          <ContactBadge
+            icon={<MapPin size={26} strokeWidth={1.75} color="#00E9D5" />}
+            title={dict.location.title}
+            label={dict.location.label}
+          />
+          <ContactBadge
+            href={emailHref}
+            ariaLabel={dict.emailAria}
+            icon={<Mail size={26} strokeWidth={1.75} color="#00E9D5" />}
+            title="dsgnr.paulo"
+            label="@gmail.com"
+          />
+          <ContactBadge
+            href={whatsappHref}
+            external
+            ariaLabel={dict.whatsappAria}
+            icon={<Phone size={26} strokeWidth={1.75} color="#1195FA" />}
+            title="75 9 9219 7861"
+            label={dict.whatsappLabel}
+          />
         </div>
 
         {/* LinkedIn */}
@@ -153,43 +112,21 @@ export default function Hero() {
         {/* =====================================================
             BOTÕES
         ====================================================== */}
-        <div className="flex items-center gap-6 animate-enter [--enter-delay:780ms]">
-
-          {/* BAIXAR CURRÍCULO — MANTÉM CONTORNO */}
-          <div>
-            <a
-              href="/docs/curriculo-paulo-vinicius.pdf"
-              download="Curriculo - Paulo Vinicius Designer.pdf"
-              aria-label="Baixar currículo (PDF)"
-              className="inline-block transition-transform duration-300 ease-out hover:-translate-y-1"
-            >
-              <Image
-                src="/images/botoes/curriculo.svg"
-                alt="Baixar currículo"
-                width={310}
-                height={190}
-                className="h-11 w-auto"
-              />
-            </a>
-          </div>
-
-          {/* ENTRAR EM CONTATO */}
-          <a
-            href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Entrar em contato pelo WhatsApp"
-            className="-mt-1 inline-block transition-transform duration-300 ease-out hover:-translate-y-1"
-          >
-            <Image
-              src="/images/botoes/contato.svg"
-              alt="Entrar em contato"
-              width={310}
-              height={190}
-              className="h-11 w-auto"
-            />
-          </a>
-
+        <div className="flex flex-wrap items-center gap-4 animate-enter [--enter-delay:780ms]">
+          <ActionButton
+            href="/docs/curriculo-paulo-vinicius.pdf"
+            download="Curriculo - Paulo Vinicius Designer.pdf"
+            label={dict.downloadCv}
+            ariaLabel={dict.downloadCvAria}
+            icon={<Download size={18} color="#19B5F0" />}
+          />
+          <ActionButton
+            href={whatsappHref}
+            external
+            label={dict.contact}
+            ariaLabel={dict.contactAria}
+            icon={<Send size={18} color="#2F6BFF" />}
+          />
         </div>
       </div>
 
@@ -202,7 +139,7 @@ export default function Hero() {
         <div className="animate-float">
           <Image
             src="/images/hero/mockup-dispositivos.png"
-            alt="Preview do site em tablet e celular"
+            alt={dict.mockupAlt}
             width={350}
             height={325}
             className="w-[430px] h-auto drop-shadow-[0_25px_60px_rgba(0,0,0,0.6)]"

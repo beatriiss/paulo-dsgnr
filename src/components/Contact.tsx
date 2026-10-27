@@ -1,9 +1,13 @@
 // src/components/Contato.tsx
 import Image from "next/image";
+import { FaWhatsapp } from "react-icons/fa6";
 import Reveal from "./Reveal";
-import { WHATSAPP_LINK } from "@/lib/contato";
+import type { Dictionary } from "@/i18n/dictionaries/pt";
+import SectionTitle from "@/components/ui/SectionTitle";
 
-export default function Contato() {
+type Props = { dict: Dictionary["contact"]; whatsappHref: string };
+
+export default function Contato({ dict, whatsappHref }: Props) {
     return (
         <section id="contato" className="relative -mb-10 text-center overflow-hidden">
             {/* Bloco com fundo quase preto — cobre só a parte de "call to action",
@@ -18,42 +22,35 @@ export default function Contato() {
                 />
 
                 <Reveal className="relative max-w-5xl mx-auto flex flex-col items-center">
-                    <Image
-                        src="/images/titulos/bora-conversar.svg"
-                        alt="Bora conversar"
-                        width={420}
-                        height={38}
-                        className="h-8 w-auto mb-2"
-                    />
+                    <SectionTitle as="p" variant="cool" className="mb-2">
+                        {dict.kicker}
+                    </SectionTitle>
 
-                    <h2 className="font-display font-bold text-[70px] leading-tight mb-4">
-                        TEM UM PROJETO EM MENTE?
+                    {/* Responsivo: em espanhol a frase fica bem mais longa */}
+                    <h2 className="font-display font-bold text-4xl sm:text-6xl lg:text-[70px] leading-tight mb-4">
+                        {dict.title}
                     </h2>
 
-                    <Image
-                        src="/images/titulos/me-chama.svg"
-                        alt="Bora conversar"
-                        width={420}
-                        height={38}
-                        className="h-8 w-auto mb-4"
-                    />
+                    <p
+                        className="mb-6 w-fit bg-clip-text font-display text-xl italic text-transparent sm:text-2xl"
+                        style={{ backgroundImage: "linear-gradient(90deg, #B1FF19, #35EF85 30%, #00E9D5 60%, #1195FA 85%, #2656FE)" }}
+                    >
+                        {dict.subtitle}
+                    </p>
 
-                   <a 
-                        href={WHATSAPP_LINK}
+                    <a
+                        href={whatsappHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-black transition-transform duration-300 ease-out hover:scale-105 active:scale-95"
+                        aria-label={dict.whatsappAria}
+                        className="inline-flex items-center gap-3 rounded-xl border-2 border-[#00E9D5] bg-black px-5 py-2.5 font-display text-base italic uppercase tracking-wide text-white transition-[translate,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_0_30px_-6px_rgba(0,233,213,0.6)] active:translate-y-0"
                     >
-                    <Image
-                        src="/images/botoes/whatsapp-contato.svg"
-                        alt="Bora conversar"
-                        width={420}
-                        height={38}
-                        className="h-10 w-auto mb-0"
-                    />
+                        <FaWhatsapp aria-hidden="true" size={28} color="#00E9D5" />
+                        {dict.whatsappButton}
                     </a>
+
                     <p className="text-md text-white/70 mt-4">
-                       Respondo pelo whatsapp. É mais rápido assim.
+                        {dict.note}
                     </p>
                 </Reveal>
 
@@ -69,15 +66,15 @@ export default function Contato() {
             {/* Rodapé — fica fora do bloco cinza, mostrando o fundo da página por trás */}
             <div className="relative px-8 flex items-center justify-center py-16 gap-[500px]">
                 <Image
-                    src={'/images/marca/logo-simbolo.svg'}
-                    alt={'Logo'}
+                    src="/images/marca/logo-simbolo.svg"
+                    alt={dict.logoAlt}
                     width={120}
                     height={60}
                     className="max-w-[120px] max-h-20 w-auto h-auto object-contain mr-8"
                 />
 
                 <p className="text-xs text-white/40">
-                    © 2026 Paulo Designer. Todos os direitos reservados.
+                    © 2026 Paulo Designer. {dict.rights}
                 </p>
             </div>
         </section>

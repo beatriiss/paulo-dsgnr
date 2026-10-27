@@ -7,6 +7,7 @@ type Props = {
   value: string;
   duration?: number; // default 1600ms
   className?: string;
+  locale?: string; // tag BCP 47 para formatar o número (default pt-BR)
 };
 
 type ParsedValue = {
@@ -15,19 +16,19 @@ type ParsedValue = {
   suffix: string;
 };
 
-// "14.000+" -> { prefix: "", target: 14000, suffix: "+" }
+// "14.000+" ou "14,000+" -> { prefix: "", target: 14000, suffix: "+" }
 function parseValue(value: string): ParsedValue | null {
-  const match = value.match(/[\d.]+/);
+  const match = value.match(/[\d.,]+/);
   if (!match) return null;
   const numericString = match[0];
-  const target = parseInt(numericString.replace(/\./g, ""), 10);
+  const target = parseInt(numericString.replace(/[.,]/g, ""), 10);
   if (isNaN(target)) return null;
   const prefix = value.slice(0, match.index);
   const suffix = value.slice((match.index ?? 0) + numericString.length);
   return { target, prefix, suffix };
 }
 
-export default function CountUp({ value, duration = 1600, className }: Props) {
+export default function CountUp({ value, duration = 1600, className, locale = "pt-BR" }: Props) {
   const elementRef = useRef<HTMLSpanElement | null>(null);
   const rafRef = useRef<number | null>(null);
   const parsed = useMemo(() => parseValue(value), [value]);
@@ -59,7 +60,7 @@ export default function CountUp({ value, duration = 1600, className }: Props) {
       const progress = Math.min((timestamp - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
       const current = Math.round(target * eased);
-      setDisplayValue(`${prefix}${current.toLocaleString("pt-BR")}${suffix}`);
+      setDisplayValue(`${prefix}${current.toLocaleString(locale)}${suffix}`);
 
       if (progress < 1) {
         rafRef.current = requestAnimationFrame(animate);
@@ -88,7 +89,7 @@ export default function CountUp({ value, duration = 1600, className }: Props) {
       }
       observer.disconnect();
     };
-  }, [parsed, duration, value]);
+  }, [parsed, duration, value, locale]);
 
   const classes = [className, "tabular-nums"].filter(Boolean).join(" ");
 

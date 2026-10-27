@@ -1,102 +1,32 @@
 // src/components/Solucoes.tsx
 import Image from "next/image";
 import Reveal from "./Reveal";
+import type { Dictionary } from "@/i18n/dictionaries/pt";
+import SectionTitle from "@/components/ui/SectionTitle";
 
-const solucoes = [
-  {
-    icon: "/images/icones/solucoes/identidade-visual.svg",
-    title: "IDENTIDADE\nVISUAL",
-    items: [
-      "Criação de logotipo",
-      "Manual da marca",
-      "Paleta de cores",
-      "Tipografia",
-      "Papelaria corporativa",
-      "Cartão de visita",
-      "Timbrado",
-      "Assinatura de e-mail",
-      "Apresentação institucional",
-    ],
-  },
-  {
-    icon: "/images/icones/solucoes/websites.svg",
-    title: "WEBSITES E\nLANDING PAGES",
-    items: [
-      "Layout de sites",
-      "Sites institucionais",
-      "Landing pages",
-      "Interfaces (UI)",
-      "Banners para sites",
-      "Ícones personalizados",
-    ],
-  },
-  {
-    icon: "/images/icones/solucoes/social-media.svg",
-    title: "SOCIAL MEDIA",
-    items: [
-      "Posts para Instagram",
-      "Carrosséis",
-      "Stories",
-      "Capas para Facebook",
-      "Banner para LinkedIn",
-      "Reels",
-      "Criativos para anúncios",
-    ],
-  },
-  {
-    icon: "/images/icones/solucoes/impressao-grafica.svg",
-    title: "IMPRESSÃO\nGRÁFICA",
-    items: [
-      "Flyers",
-      "Panfletos",
-      "Folders",
-      "Catálogos",
-      "Revistas",
-      "Cardápios",
-      "Convites",
-      "Crachás",
-    ],
-  },
-  {
-    icon: "/images/icones/solucoes/comunicacao-visual.svg",
-    title: "COMUNICAÇÃO\nVISUAL",
-    items: [
-      "Fachadas",
-      "Totens",
-      "Placas",
-      "Banners",
-      "Adesivos",
-      "Plotagem",
-      "Envelopamento de veículos",
-      "Wind Banner",
-    ],
-  },
-  {
-    icon: "/images/icones/solucoes/arte-vetorizacao.svg",
-    title: "ARTE FINAL E\nVETORIZAÇÃO",
-    items: ["Criação de arte final", "Vetorização de logotipo", "Rótulos e Embalagens"],
-  },
+// Mesma ordem dos itens de dict.solutions.items
+const icones = [
+  "/images/icones/solucoes/identidade-visual.svg",
+  "/images/icones/solucoes/websites.svg",
+  "/images/icones/solucoes/social-media.svg",
+  "/images/icones/solucoes/impressao-grafica.svg",
+  "/images/icones/solucoes/comunicacao-visual.svg",
+  "/images/icones/solucoes/arte-vetorizacao.svg",
 ];
 
-export default function Solucoes() {
+export default function Solucoes({ dict }: { dict: Dictionary["solutions"] }) {
   return (
     <section id="solucoes" className="px-8 py-16 max-w-6xl mx-auto">
       <Reveal variant="left">
-        <Image
-          src="/images/titulos/solucoes.webp"
-          alt="Soluções"
-          width={350}
-          height={76}
-          className="h-12 w-auto mb-10"
-        />
+        <SectionTitle className="mb-10">{dict.title}</SectionTitle>
       </Reveal>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
-        {solucoes.map((s, i) => (
-          <Reveal key={s.title} delay={(i % 3) * 120}>
+        {dict.items.map((s, i) => (
+          <Reveal key={icones[i]} delay={(i % 3) * 120}>
             <div className="group flex gap-4 transition-transform duration-300 ease-out hover:-translate-y-1">
               <Image
-                src={s.icon}
+                src={icones[i]}
                 alt=""
                 width={56}
                 height={56}

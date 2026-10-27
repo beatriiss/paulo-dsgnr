@@ -8,7 +8,12 @@
   --color-accent-blue: #38b6ff;
   --color-accent-purple: #a259ff;
   --color-accent-orange: #ff7a1a;
+}
 
+/* "inline" é necessário aqui: as variáveis --font-*-local são criadas pelo
+   next/font no <body>, não no :root. Sem o inline, o Tailwind resolve a
+   var() no :root, onde ela não existe, e as fontes nunca são aplicadas. */
+@theme inline {
   --font-display: var(--font-display-local), "Anton", sans-serif;
   --font-sans: var(--font-sans-local), system-ui, sans-serif;
 }

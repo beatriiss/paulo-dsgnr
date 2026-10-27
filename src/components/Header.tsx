@@ -5,19 +5,21 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FaInstagram } from "react-icons/fa6";
 import { HiMenu, HiX } from "react-icons/hi";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries/pt";
 
-export default function Header() {
+export default function Header({ dict }: { dict: Dictionary["header"]; lang: Locale }) {
     const [menuOpen, setMenuOpen] = useState(false);
 
     // Cada link aponta pro id da seção correspondente (ver os componentes:
     // AboutMe id="sobre-mim", Solutions id="solucoes", Portifolio id="portfolio",
     // HowItWorks id="como-funciona", Experience id="experiencia")
     const links = [
-        { label: "SOBRE MIM", href: "#sobre-mim" },
-        { label: "SOLUÇÕES", href: "#solucoes" },
-        { label: "PORTFÓLIO", href: "#portfolio" },
-        { label: "COMO FUNCIONA", href: "#como-funciona" },
-        { label: "EXPERIÊNCIA", href: "#experiencia" },
+        { label: dict.nav.about, href: "#sobre-mim" },
+        { label: dict.nav.solutions, href: "#solucoes" },
+        { label: dict.nav.portfolio, href: "#portfolio" },
+        { label: dict.nav.process, href: "#como-funciona" },
+        { label: dict.nav.experience, href: "#experiencia" },
     ];
 
     // Fecha o menu mobile com Esc
@@ -65,7 +67,7 @@ export default function Header() {
 
                     <div className="hidden sm:block rounded-md p-[1.5px] bg-[linear-gradient(to_right,var(--color-accent-blue),var(--color-accent-purple))]">
                         <button className="rounded-[5px] bg-black px-3 lg:px-5 py-2 text-sm lg:text-base font-medium text-white hover:bg-[linear-gradient(to_right,var(--color-accent-blue),var(--color-accent-purple))] hover:text-black transition-colors w-full h-full">
-                            ORÇAMENTO
+                            {dict.budget}
                         </button>
                     </div>
 
@@ -73,7 +75,7 @@ export default function Header() {
                     <button
                         className="lg:hidden text-white text-2xl"
                         onClick={() => setMenuOpen((prev) => !prev)}
-                        aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+                        aria-label={menuOpen ? dict.closeMenu : dict.openMenu}
                         aria-expanded={menuOpen}
                     >
                         <span className="relative block w-6 h-6">
@@ -88,7 +90,7 @@ export default function Header() {
             <div className="absolute top-1 sm:top-10 left-5 sm:left-16 z-50 w-[140px] sm:w-[188px] md:w-[187px] lg:w-[354px]">
                 <Image
                     src="/images/marca/logo.svg"
-                    alt="Paulo Dsgnr"
+                    alt={dict.logoAlt}
                     width={480}
                     height={242}
                     className="w-full h-auto select-none pointer-events-none"
@@ -147,7 +149,7 @@ export default function Header() {
                                 className="rounded-[15px] bg-black px-5 py-2 text-base font-medium text-white w-full h-full"
                                 tabIndex={menuOpen ? 0 : -1}
                             >
-                                ORÇAMENTO
+                                {dict.budget}
                             </button>
                         </div>
                     </div>

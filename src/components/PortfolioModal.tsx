@@ -4,16 +4,22 @@
 import Image from "next/image";
 import { useEffect, useCallback, useRef, useState } from "react";
 import Reveal from "./Reveal";
+import type { Dictionary } from "@/i18n/dictionaries/pt";
+
+// Textos do modal no idioma da página
+type Labels = Dictionary["portfolio"]["modal"];
 
 export type ProjetoModal = {
   nome: string;
-  categoria: string;
+  categoria: string; // chave interna (define o layout do modal)
+  categoriaLabel: string; // rótulo traduzido exibido no modal
   descricao?: string;
   imagens: string[];
 };
 
 type Props = {
   projeto: ProjetoModal | null;
+  labels: Labels;
   onClose: () => void;
 };
 
@@ -65,10 +71,12 @@ function RingIconButton({
 // categoria + título + descrição. Só a galeria (children) muda entre eles.
 function ModalDestaqueBase({
   projeto,
+  labels,
   onClose,
   children,
 }: {
   projeto: ProjetoModal;
+  labels: Labels;
   onClose: () => void;
   children: React.ReactNode;
 }) {
@@ -94,7 +102,7 @@ function ModalDestaqueBase({
 
       <RingIconButton
         onClick={onClose}
-        ariaLabel="Fechar"
+        ariaLabel={labels.close}
         className="!fixed !top-6 !right-6 z-20"
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -113,7 +121,7 @@ function ModalDestaqueBase({
           {projeto.nome}
         </h2>
         <p className="mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-accent-orange sm:text-base">
-          {projeto.categoria}
+          {projeto.categoriaLabel}
         </p>
         {projeto.descricao && (
           <p className="mb-14 max-w-6xl text-lg leading-relaxed text-white/70 sm:text-xl">
@@ -131,7 +139,7 @@ function ModalDestaqueBase({
 // Cada imagem mantém sua proporção original (sem cortar topo/base nem
 // sobrar faixas pretas nas laterais): o container não tem altura fixa,
 // a altura é a que a própria imagem definir.
-function GaleriaGrid({ projeto }: { projeto: ProjetoModal }) {
+function GaleriaGrid({ projeto, labels }: { projeto: ProjetoModal; labels: Labels }) {
   return (
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {projeto.imagens.map((img, i) => (
@@ -139,7 +147,7 @@ function GaleriaGrid({ projeto }: { projeto: ProjetoModal }) {
           <div className="overflow-hidden rounded-2xl bg-black/20 transition-transform duration-300 ease-out hover:-translate-y-1">
             <Image
               src={img}
-              alt={`${projeto.nome} - imagem ${i + 1}`}
+              alt={`${projeto.nome} - ${labels.image} ${i + 1}`}
               width={1000}
               height={1250}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -155,7 +163,7 @@ function GaleriaGrid({ projeto }: { projeto: ProjetoModal }) {
 // Galeria em fileira única, com setas dos dois lados pra rolar — usada em
 // Identidade Visual. Mesma lógica: largura fixa por card, altura livre
 // conforme a proporção real de cada imagem.
-function GaleriaLinhaUnica({ projeto }: { projeto: ProjetoModal }) {
+function GaleriaLinhaUnica({ projeto, labels }: { projeto: ProjetoModal; labels: Labels }) {
   const trilhoRef = useRef<HTMLDivElement>(null);
 
   const rolar = (direcao: -1 | 1) => {
@@ -175,7 +183,7 @@ function GaleriaLinhaUnica({ projeto }: { projeto: ProjetoModal }) {
       {temVariasImagens && (
         <RingIconButton
           onClick={() => rolar(-1)}
-          ariaLabel="Ver imagens anteriores"
+          ariaLabel={labels.prevImages}
           className="!absolute !left-0 !top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 sm:flex"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -202,7 +210,7 @@ function GaleriaLinhaUnica({ projeto }: { projeto: ProjetoModal }) {
           >
             <Image
               src={img}
-              alt={`${projeto.nome} - imagem ${i + 1}`}
+              alt={`${projeto.nome} - ${labels.image} ${i + 1}`}
               width={1000}
               height={1250}
               sizes="(max-width: 640px) 75vw, (max-width: 1024px) 45vw, 30vw"
@@ -215,7 +223,7 @@ function GaleriaLinhaUnica({ projeto }: { projeto: ProjetoModal }) {
       {temVariasImagens && (
         <RingIconButton
           onClick={() => rolar(1)}
-          ariaLabel="Ver mais imagens"
+          ariaLabel={labels.nextImages}
           className="!absolute !right-0 !top-1/2 z-10 hidden translate-x-1/2 -translate-y-1/2 sm:flex"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -233,7 +241,7 @@ function GaleriaLinhaUnica({ projeto }: { projeto: ProjetoModal }) {
   );
 }
 
-export default function PortfolioModal({ projeto, onClose }: Props) {
+export default function PortfolioModal({ projeto, labels, onClose }: Props) {
   const [indice, setIndice] = useState(0);
 
   useEffect(() => {
@@ -278,8 +286,8 @@ export default function PortfolioModal({ projeto, onClose }: Props) {
   // Social Media: layout de destaque com galeria em grid (várias linhas)
   if (projeto.categoria === "Social Media") {
     return (
-      <ModalDestaqueBase projeto={projeto} onClose={onClose}>
-        <GaleriaGrid projeto={projeto} />
+      <ModalDestaqueBase projeto={projeto} labels={labels} onClose={onClose}>
+        <GaleriaGrid projeto={projeto} labels={labels} />
       </ModalDestaqueBase>
     );
   }
@@ -288,8 +296,8 @@ export default function PortfolioModal({ projeto, onClose }: Props) {
   // única com setas dos dois lados pra rolar
   if (projeto.categoria === "Identidade Visual") {
     return (
-      <ModalDestaqueBase projeto={projeto} onClose={onClose}>
-        <GaleriaLinhaUnica projeto={projeto} />
+      <ModalDestaqueBase projeto={projeto} labels={labels} onClose={onClose}>
+        <GaleriaLinhaUnica projeto={projeto} labels={labels} />
       </ModalDestaqueBase>
     );
   }
@@ -318,7 +326,7 @@ export default function PortfolioModal({ projeto, onClose }: Props) {
               </p>
             </div>
 
-            <RingIconButton onClick={onClose} ariaLabel="Fechar">
+            <RingIconButton onClick={onClose} ariaLabel={labels.close}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M6 6l12 12M18 6L6 18"
@@ -333,7 +341,7 @@ export default function PortfolioModal({ projeto, onClose }: Props) {
           <div className="relative flex min-h-0 flex-1 items-center justify-center bg-black/40 px-2 py-4 sm:px-6">
             {total > 1 && (
               <div className="absolute left-1 z-10 sm:left-4">
-                <RingIconButton onClick={anterior} ariaLabel="Imagem anterior">
+                <RingIconButton onClick={anterior} ariaLabel={labels.prevImage}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path
                       d="M15 6l-6 6 6 6"
@@ -351,7 +359,7 @@ export default function PortfolioModal({ projeto, onClose }: Props) {
             <div key={indice} className="relative h-full w-full animate-backdrop-in">
               <Image
                 src={projeto.imagens[indice]}
-                alt={`${projeto.nome} - página ${indice + 1}`}
+                alt={`${projeto.nome} - ${labels.page} ${indice + 1}`}
                 fill
                 sizes="(max-width: 1200px) 100vw, 1152px"
                 className="object-contain"
@@ -361,7 +369,7 @@ export default function PortfolioModal({ projeto, onClose }: Props) {
 
             {total > 1 && (
               <div className="absolute right-1 z-10 sm:right-4">
-                <RingIconButton onClick={proximo} ariaLabel="Próxima imagem">
+                <RingIconButton onClick={proximo} ariaLabel={labels.nextImage}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path
                       d="M9 6l6 6-6 6"
@@ -389,7 +397,7 @@ export default function PortfolioModal({ projeto, onClose }: Props) {
                       ? "border-white/80"
                       : "border-white/10 opacity-50 hover:opacity-80"
                     }`}
-                  aria-label={`Ir para imagem ${i + 1}`}
+                  aria-label={`${labels.goToImage} ${i + 1}`}
                 >
                   <Image src={img} alt="" fill className="object-cover" />
                 </button>

@@ -5,16 +5,26 @@ import Image from "next/image";
 import { useState } from "react";
 import PortfolioModal, { type ProjetoModal } from "./PortfolioModal";
 import Reveal from "./Reveal";
+import type { Dictionary } from "@/i18n/dictionaries/pt";
+import SectionTitle from "@/components/ui/SectionTitle";
 
+// Chave interna da categoria (usada também na lógica do modal); o rótulo
+// exibido vem do dicionário.
 type Categoria = "Identidade Visual" | "Social Media" | "Sites" | "Design Gráfico";
 
+const chaveCategoria: Record<Categoria, keyof Dictionary["portfolio"]["categories"]> = {
+  "Identidade Visual": "identidadeVisual",
+  "Social Media": "socialMedia",
+  "Sites": "sites",
+  "Design Gráfico": "designGrafico",
+};
+
+// Nome e descrição de cada projeto ficam no dicionário (dict.projects[slug])
 type Projeto = {
-  slug: string;
-  nome: string;
+  slug: keyof Dictionary["portfolio"]["projects"];
   categoria: Categoria;
   capa: string;
   imagens: string[];
-  descricao?: string;
   capaFoco?: string; // ex: "top", "bottom", "50% 20%" — controla o object-position da capa
 };
 
@@ -28,7 +38,6 @@ function gerarPaginas(pasta: string, total: number, ext: "png" | "jpg") {
 const projetos: Projeto[] = [
   {
     slug: "kito-consorcios",
-    nome: "Kito Consórcios",
     categoria: "Identidade Visual",
     capa: "/images/portfolio/identidade-visual/kito/01.png",
     imagens: gerarPaginas("/images/portfolio/identidade-visual/kito", 16, "png"),
@@ -36,30 +45,21 @@ const projetos: Projeto[] = [
   },
   {
     slug: "jefferson-xavier",
-    nome: "Jefferson Xavier",
     categoria: "Identidade Visual",
     capa: "/images/portfolio/identidade-visual/jefferson-xavier/01.png",
     imagens: gerarPaginas("/images/portfolio/identidade-visual/jefferson-xavier", 20, "png"),
   },
   {
     slug: "dulub-social-media",
-    nome: "DULUB - Tecnologia Fluida",
     categoria: "Social Media",
     capa: "/images/portfolio/social-media/dulub/capa.webp",
     imagens: gerarPaginas("/images/portfolio/social-media/dulub", 25, "jpg"),
-    // TODO: troque por um texto real sobre o projeto — este é só um placeholder
-    descricao:
-      "O desafio era sair do lugar comum técnico e construir uma comunicação com mais confiança. A direção visual foi pensada para traduzir a tecnologia fluida da marca em uma linguagem mais acessível, direta e profissional, aproximando a DULUB do mecânico, do lojista e do consumidor final. O resultado é um feed mais consistente, estratégico e com mais autoridade no segmento.",
   },
   {
     slug: "vanessa-paula-social-media",
-    nome: "Vanessa Paula - Fisioterapia Estética",
     categoria: "Social Media",
     capa: "/images/portfolio/social-media/vanessa-paula/capa.png",
     imagens: gerarPaginas("/images/portfolio/social-media/vanessa-paula", 16, "png"),
-    // TODO: troque por um texto real sobre o projeto — este é só um placeholder
-    descricao:
-      "O desafio era traduzir a expertise em fisioterapia estética para uma comunicação mais próxima e acessível, sem perder o rigor profissional. A identidade visual em tons de rosa foi desenvolvida para acolher e educar, apresentando procedimentos como skin booster e suplementação com leveza e confiança. O resultado é um feed que reforça o autocuidado e posiciona a Vanessa Paula como referência no segmento.",
   },
 ];
 
@@ -86,67 +86,67 @@ function SetaVerProjeto({ className = "" }: { className?: string }) {
   );
 }
 
-export default function Portfolio() {
+export default function Portfolio({ dict }: { dict: Dictionary["portfolio"] }) {
   const [projetoAberto, setProjetoAberto] = useState<ProjetoModal | null>(null);
 
   return (
     <section id="portfolio" className="px-8 py-16 max-w-6xl mx-auto">
       <Reveal variant="left">
-        <Image
-          src="/images/titulos/portfolio.webp"
-          alt="Portfólio"
-          width={280}
-          height={38}
-          className="h-10 w-auto mb-10"
-        />
+        <SectionTitle className="mb-10">{dict.title}</SectionTitle>
       </Reveal>
 
       <div className="flex flex-col gap-14">
         {categorias.map((categoria) => {
           const itens = projetos.filter((p) => p.categoria === categoria);
+          const rotuloCategoria = dict.categories[chaveCategoria[categoria]];
 
           return (
             <div key={categoria}>
               <Reveal variant="fade">
-                <h3 className="font-display font-bold text-lg mb-5">{categoria}</h3>
+                <h3 className="font-display font-bold text-lg mb-5">{rotuloCategoria}</h3>
               </Reveal>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {itens.length > 0
-                  ? itens.map((projeto, i) => (
-                      <Reveal key={projeto.slug} delay={(i % 3) * 120} className="group flex flex-col">
-                        <button
-                          onClick={() =>
-                            setProjetoAberto({
-                              nome: projeto.nome,
-                              categoria: projeto.categoria,
-                              descricao: projeto.descricao,
-                              imagens: projeto.imagens,
-                            })
-                          }
-                          className="relative aspect-[1890/2355] overflow-hidden rounded-2xl bg-black text-left ring-1 ring-white/0 transition-[box-shadow,translate] duration-500 ease-out group-hover:-translate-y-1 group-hover:ring-white/15 group-hover:shadow-[0_20px_50px_-20px_rgba(56,182,255,0.35)]"
-                        >
-                          <Image
-                            src={projeto.capa}
-                            alt={projeto.nome}
-                            fill
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                            style={{ objectPosition: projeto.capaFoco ?? "center" }}
-                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                          />
-                        </button>
+                  ? itens.map((projeto, i) => {
+                      const { nome, descricao } = dict.projects[projeto.slug];
 
-                        <div className="pt-3">
-                          <p className="font-display font-bold text-sm leading-tight text-white">
-                            {projeto.nome}
-                          </p>
-                          <span className="mt-1.5 flex items-center gap-1 text-[11px] tracking-wide text-white/60 transition-transform duration-300 group-hover:translate-x-1">
-                            VER PROJETO
-                            <SetaVerProjeto className="h-2 w-2" />
-                          </span>
-                        </div>
-                      </Reveal>
-                    ))
+                      return (
+                        <Reveal key={projeto.slug} delay={(i % 3) * 120} className="group flex flex-col">
+                          <button
+                            onClick={() =>
+                              setProjetoAberto({
+                                nome,
+                                categoria: projeto.categoria,
+                                categoriaLabel: rotuloCategoria,
+                                descricao: descricao || undefined,
+                                imagens: projeto.imagens,
+                              })
+                            }
+                            className="relative aspect-[1890/2355] overflow-hidden rounded-2xl bg-black text-left ring-1 ring-white/0 transition-[box-shadow,translate] duration-500 ease-out group-hover:-translate-y-1 group-hover:ring-white/15 group-hover:shadow-[0_20px_50px_-20px_rgba(56,182,255,0.35)]"
+                          >
+                            <Image
+                              src={projeto.capa}
+                              alt={nome}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 33vw"
+                              style={{ objectPosition: projeto.capaFoco ?? "center" }}
+                              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                            />
+                          </button>
+
+                          <div className="pt-3">
+                            <p className="font-display font-bold text-sm leading-tight text-white">
+                              {nome}
+                            </p>
+                            <span className="mt-1.5 flex items-center gap-1 text-[11px] tracking-wide text-white/60 transition-transform duration-300 group-hover:translate-x-1">
+                              {dict.viewProject}
+                              <SetaVerProjeto className="h-2 w-2" />
+                            </span>
+                          </div>
+                        </Reveal>
+                      );
+                    })
                   : // Placeholder para categorias sem material ainda (Sites, Design Gráfico)
                     Array.from({ length: 3 }, (_, i) => (
                       <Reveal
@@ -155,7 +155,7 @@ export default function Portfolio() {
                         delay={i * 120}
                         className="flex aspect-[1890/2355] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-white/15 text-white/30"
                       >
-                        <span className="text-xs">Em breve</span>
+                        <span className="text-xs">{dict.comingSoon}</span>
                       </Reveal>
                     ))}
               </div>
@@ -166,6 +166,7 @@ export default function Portfolio() {
 
       <PortfolioModal
         projeto={projetoAberto}
+        labels={dict.modal}
         onClose={() => setProjetoAberto(null)}
       />
     </section>

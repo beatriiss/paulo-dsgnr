@@ -1,16 +1,28 @@
-// src/app/page.tsx
+// src/app/[lang]/page.tsx
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import Portfolio from "@/components/Portifolio";
 import Sobre from "@/components/AboutMe";
-import Solucoes from "../components/Solutions";
+import Solucoes from "@/components/Solutions";
 import ComoFunciona from "@/components/HowItWorks";
 import Experiencia from "@/components/Experience";
 import Contato from "@/components/Contact";
+import { hasLocale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/get-dictionary";
+import { whatsappLink, emailLink } from "@/lib/contato";
 
-export default function Home() {
+export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) notFound();
+
+  const dict = getDictionary(lang);
+  // Mensagens pré-preenchidas no idioma da página
+  const whatsappHref = whatsappLink(dict.messages.whatsapp);
+  const emailHref = emailLink(dict.messages.emailSubject, dict.messages.emailBody);
+
   return (
     <main>
       {/* Header + Hero compartilham o mesmo fundo decorativo (o "H" em
@@ -29,8 +41,8 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bg" />
         </div>
 
-        <Header />
-        <Hero />
+        <Header dict={dict.header} lang={lang} />
+        <Hero dict={dict.hero} lang={lang} whatsappHref={whatsappHref} emailHref={emailHref} />
       </div>
 
       {/* A partir daqui (Stats) até o fim da página, fundo único que rola
@@ -42,13 +54,13 @@ export default function Home() {
           className="absolute inset-0 -z-10 bg-[url('/images/fundos/site.svg')] bg-cover bg-center bg-no-repeat bg-bg"
         />
 
-        <Stats />
-        <Sobre />
-        <Solucoes />
-        <Portfolio />
-        <ComoFunciona />
-        <Experiencia />
-        <Contato />
+        <Stats dict={dict.stats} lang={lang} />
+        <Sobre dict={dict.about} />
+        <Solucoes dict={dict.solutions} />
+        <Portfolio dict={dict.portfolio} />
+        <ComoFunciona dict={dict.process} />
+        <Experiencia dict={dict.experience} />
+        <Contato dict={dict.contact} whatsappHref={whatsappHref} />
       </div>
     </main>
   );
