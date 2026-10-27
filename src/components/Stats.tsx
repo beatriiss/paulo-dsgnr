@@ -15,10 +15,10 @@ const icones = [
 
 export default function Stats({ dict, lang }: { dict: Dictionary["stats"]; lang: Locale }) {
   return (
-    <section className="flex flex-wrap justify-center py-10 ">
+    <section className="grid grid-cols-2 gap-y-6 px-4 py-10 sm:flex sm:flex-wrap sm:justify-center sm:gap-y-4">
       {dict.map((s, i) => (
         <Reveal key={icones[i]} delay={i * 100} className="flex items-center">
-          <div className="flex items-center gap-3 px-8 py-2 rounded-xl transition-transform duration-300 ease-out hover:scale-110 cursor-default">
+          <div className="flex items-center gap-3 px-2 sm:px-6 lg:px-8 py-2 rounded-xl transition-transform duration-300 ease-out hover:scale-110 cursor-default">
             <Image
               src={icones[i]}
               alt=""
@@ -28,13 +28,13 @@ export default function Stats({ dict, lang }: { dict: Dictionary["stats"]; lang:
             />
             <div className="text-left leading-tight">
               <CountUp value={s.value} locale={localeTags[lang]} className="block font-display font-bold text-3xl" />
-              <p className="text-xs text-white/50 whitespace-nowrap">{s.label}</p>
+              <p className="text-xs text-white/50 sm:whitespace-nowrap">{s.label}</p>
             </div>
           </div>
 
           {/* Divisor vertical entre os itens (não aparece depois do último) */}
           {i < dict.length - 1 && (
-            <div className="hidden sm:block w-px h-10 bg-white/10" />
+            <div className="hidden lg:block w-px h-10 bg-white/10" />
           )}
         </Reveal>
       ))}

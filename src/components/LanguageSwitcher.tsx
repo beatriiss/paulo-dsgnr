@@ -14,7 +14,7 @@ type Props = {
 // para o proxy lembrar o idioma na próxima visita.
 export default function LanguageSwitcher({ lang, label = "SELECT LANGUAGE:", className = "" }: Props) {
   return (
-    <nav aria-label="Language" className={`flex items-center gap-2 text-xs text-white/60 ${className}`}>
+    <nav aria-label="Language" className={`flex flex-wrap items-center gap-2 text-xs text-white/60 ${className}`}>
       <span className="tracking-widest">{label}</span>
       {locales.map((l, index) => (
         <span key={l} className="flex items-center gap-2">

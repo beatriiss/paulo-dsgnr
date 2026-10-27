@@ -19,7 +19,7 @@ const gradientes = {
 export default function SectionTitle({ children, variant = "warm", as: Tag = "h2", className = "" }: Props) {
   return (
     <Tag
-      className={`inline-block font-sans font-bold uppercase leading-[1.1] tracking-tight text-[2rem] sm:text-[2.5rem] bg-clip-text text-transparent pb-0.5 ${className}`}
+      className={`inline-block max-w-full break-words font-sans font-bold uppercase leading-[1.1] tracking-tight text-[1.75rem] sm:text-[2.5rem] bg-clip-text text-transparent pb-0.5 ${className}`}
       style={{ backgroundImage: gradientes[variant] }}
     >
       {children}

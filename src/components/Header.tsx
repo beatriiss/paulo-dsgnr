@@ -40,9 +40,9 @@ export default function Header({ dict }: { dict: Dictionary["header"]; lang: Loc
 
     return (
         <header className="relative z-50">
-            <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 lg:py-5">
+            <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-5">
                 {/* Espaço reservado pro tamanho da logo, responsivo */}
-                <div className="w-28 sm:w-40 lg:w-56 shrink-0" />
+                <div className="w-28 sm:w-40 lg:w-56 shrink-0 h-[60px] sm:h-[80px] lg:h-auto" />
 
                 {/* Nav desktop */}
                 <nav className="hidden lg:flex items-center gap-6 text-base font-medium text-white/80">
@@ -87,7 +87,7 @@ export default function Header({ dict }: { dict: Dictionary["header"]; lang: Loc
             </div>
 
             {/* Logo posicionada fora do fluxo, responsiva */}
-            <div className="absolute top-1 sm:top-10 left-5 sm:left-16 z-50 w-[140px] sm:w-[188px] md:w-[187px] lg:w-[354px]">
+            <div className="absolute top-3 sm:top-4 lg:top-10 left-4 sm:left-6 lg:left-16 z-50 w-[120px] sm:w-[158px] lg:w-[354px]">
                 <Image
                     src="/images/marca/logo.svg"
                     alt={dict.logoAlt}
@@ -105,7 +105,7 @@ export default function Header({ dict }: { dict: Dictionary["header"]; lang: Loc
                     alt=""
                     width={1170}
                     height={8}
-                    className="absolute bottom-0 right-0 h-1 object-cover"
+                    className="absolute bottom-0 right-0 h-1 w-full object-fill lg:w-auto lg:object-cover"
                 />
             </div>
 
@@ -142,11 +142,11 @@ export default function Header({ dict }: { dict: Dictionary["header"]; lang: Loc
                         </a>
 
                         <div
-                            className={`rounded rounded-[30px] p-[1.5px] bg-[linear-gradient(to_right,var(--color-accent-blue),var(--color-accent-purple))] mt-2 transition-[opacity,transform] duration-500 ${itemAnim}`}
+                            className={`rounded-lg p-[1.5px] bg-[linear-gradient(to_right,var(--color-accent-blue),var(--color-accent-purple))] mt-2 transition-[opacity,transform] duration-500 ${itemAnim}`}
                             style={itemDelay(links.length + 1)}
                         >
                             <button
-                                className="rounded-[15px] bg-black px-5 py-2 text-base font-medium text-white w-full h-full"
+                                className="rounded-[6.5px] bg-black px-5 py-2.5 text-base font-medium text-white w-full h-full transition-colors hover:bg-[linear-gradient(to_right,var(--color-accent-blue),var(--color-accent-purple))] hover:text-black"
                                 tabIndex={menuOpen ? 0 : -1}
                             >
                                 {dict.budget}
