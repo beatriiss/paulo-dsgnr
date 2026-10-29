@@ -66,8 +66,8 @@ function RingIconButton({
   );
 }
 
-// Cabeçalho compartilhado dos dois layouts "de destaque" (Identidade Visual
-// e Social Media): fundo com a primeira imagem desfocada, botão de fechar,
+// Cabeçalho compartilhado dos layouts "de destaque" (Identidade Visual,
+// Social Media e Sites): fundo com a primeira imagem desfocada, botão de fechar,
 // categoria + título + descrição. Só a galeria (children) muda entre eles.
 function ModalDestaqueBase({
   projeto,
@@ -155,6 +155,37 @@ function GaleriaGrid({ projeto, labels }: { projeto: ProjetoModal; labels: Label
             />
           </div>
         </Reveal>
+      ))}
+    </div>
+  );
+}
+
+// Galeria de site — cada imagem (print da página inteira) vira uma "janela
+// de navegador" centralizada, sem scroll interno: a rolagem é a do modal.
+// Sem <Reveal>: a página é tão alta que nunca atinge o threshold do
+// IntersectionObserver e ficaria invisível.
+function GaleriaSite({ projeto, labels }: { projeto: ProjetoModal; labels: Labels }) {
+  return (
+    <div className="flex flex-col gap-12">
+      {projeto.imagens.map((img, i) => (
+        <div key={img} className="mx-auto max-w-5xl overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgba(56,182,255,0.35)]">
+          <div className="flex items-center gap-3 border-b border-white/10 bg-[#161616] px-4 py-3">
+            <span className="h-3 w-3 shrink-0 rounded-full bg-[#FF5F57]" />
+            <span className="h-3 w-3 shrink-0 rounded-full bg-[#FEBC2E]" />
+            <span className="h-3 w-3 shrink-0 rounded-full bg-[#28C840]" />
+            <div className="mx-auto max-w-md min-w-0 flex-1 truncate rounded-full bg-white/5 px-4 py-1.5 text-center text-xs text-white/50">
+              {projeto.nome}
+            </div>
+          </div>
+          <Image
+            src={img}
+            alt={`${projeto.nome} - ${labels.page} ${i + 1}`}
+            width={1600}
+            height={9992}
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            className="block h-auto w-full"
+          />
+        </div>
       ))}
     </div>
   );
@@ -260,14 +291,14 @@ export default function PortfolioModal({ projeto, labels, onClose }: Props) {
 
   // Navegação por teclado — as setas só fazem sentido no modal-carrossel
   // de imagem única (categorias que ainda não têm layout de destaque
-  // próprio: Sites e Design Gráfico, por enquanto).
+  // próprio: Design Gráfico, por enquanto).
   useEffect(() => {
     if (!projeto) return;
     const categoria = projeto.categoria;
 
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
-      if (categoria === "Social Media" || categoria === "Identidade Visual") return;
+      if (categoria === "Social Media" || categoria === "Identidade Visual" || categoria === "Sites") return;
       if (e.key === "ArrowLeft") anterior();
       if (e.key === "ArrowRight") proximo();
     }
@@ -298,6 +329,15 @@ export default function PortfolioModal({ projeto, labels, onClose }: Props) {
     return (
       <ModalDestaqueBase projeto={projeto} labels={labels} onClose={onClose}>
         <GaleriaLinhaUnica projeto={projeto} labels={labels} />
+      </ModalDestaqueBase>
+    );
+  }
+
+  // Sites: mesmo layout de destaque, com a página dentro de uma janela de navegador
+  if (projeto.categoria === "Sites") {
+    return (
+      <ModalDestaqueBase projeto={projeto} labels={labels} onClose={onClose}>
+        <GaleriaSite projeto={projeto} labels={labels} />
       </ModalDestaqueBase>
     );
   }
