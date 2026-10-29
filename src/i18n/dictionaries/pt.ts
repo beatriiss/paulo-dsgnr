@@ -165,6 +165,16 @@ const pt = {
         descricao:
           "O desafio era traduzir a expertise em fisioterapia estética para uma comunicação mais próxima e acessível, sem perder o rigor profissional. A identidade visual em tons de rosa foi desenvolvida para acolher e educar, apresentando procedimentos como skin booster e suplementação com leveza e confiança. O resultado é um feed que reforça o autocuidado e posiciona a Vanessa Paula como referência no segmento.",
       },
+      "lucidata-social-media": {
+        nome: "Lucidata - Pensou? Na Lucidata tem!",
+        descricao:
+          "O desafio era transformar o catálogo de uma loja de informática em uma campanha com personalidade e desejo de compra. A direção visual em vermelho e preto, com brilho e neon, coloca produto e preço em destaque, apoiados pelo selo da campanha e por chips com as especificações técnicas, e se desdobra em posts, stories, reels e carrosséis. O resultado é um feed reconhecível, direto ao ponto e que leva o cliente para o WhatsApp e o site.",
+      },
+      "iaw-contabiliza-site": {
+        nome: "IAW Contabiliza - Contabilidade Online",
+        descricao:
+          "O desafio era transmitir a confiança de uma contabilidade tradicional em um serviço 100% online. O site foi desenhado com a identidade em roxo e amarelo, organizando vantagens, serviços, abertura de empresa e troca de contador em uma navegação clara, com formulário de contato e perguntas frequentes para tirar dúvidas. O resultado é uma página que reforça a credibilidade da IAW Contabiliza e transforma visitantes em contatos qualificados.",
+      },
     },
     modal: {
       close: "Fechar",

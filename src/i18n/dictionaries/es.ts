@@ -159,6 +159,16 @@ const es: Dictionary = {
         descricao:
           "El desafío era traducir la experiencia en fisioterapia estética a una comunicación más cercana y accesible, sin perder el rigor profesional. La identidad visual en tonos rosa fue desarrollada para acoger y educar, presentando procedimientos como skin booster y suplementación con ligereza y confianza. El resultado es un feed que refuerza el autocuidado y posiciona a Vanessa Paula como referente en su sector.",
       },
+      "lucidata-social-media": {
+        nome: "Lucidata - Pensou? Na Lucidata tem!",
+        descricao:
+          "El desafío era transformar el catálogo de una tienda de informática en una campaña con personalidad y deseo de compra. La dirección visual en rojo y negro, con brillo y neón, pone el producto y el precio en primer plano, apoyados por el sello de la campaña y por chips con las especificaciones técnicas, y se despliega en posts, stories, reels y carruseles. El resultado es un feed reconocible, directo y que lleva al cliente a WhatsApp y al sitio web.",
+      },
+      "iaw-contabiliza-site": {
+        nome: "IAW Contabiliza - Contabilidad Online",
+        descricao:
+          "El desafío era transmitir la confianza de una contabilidad tradicional en un servicio 100% online. El sitio fue diseñado con la identidad en morado y amarillo, organizando ventajas, servicios, apertura de empresa y cambio de contador en una navegación clara, con formulario de contacto y preguntas frecuentes para resolver dudas. El resultado es una página que refuerza la credibilidad de IAW Contabiliza y convierte visitantes en contactos calificados.",
+      },
     },
     modal: {
       close: "Cerrar",

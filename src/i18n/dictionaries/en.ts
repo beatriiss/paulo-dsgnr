@@ -159,6 +159,16 @@ const en: Dictionary = {
         descricao:
           "The challenge was to turn expertise in aesthetic physiotherapy into warmer, more accessible communication without losing professional rigor. The pink-toned visual identity was designed to welcome and educate, presenting treatments such as skin booster and supplements with lightness and confidence. The result is a feed that reinforces self-care and positions Vanessa Paula as a reference in her field.",
       },
+      "lucidata-social-media": {
+        nome: "Lucidata - Pensou? Na Lucidata tem!",
+        descricao:
+          "The challenge was to turn an IT store's catalog into a campaign with personality and purchase appeal. The red and black visual direction, with glow and neon, puts product and price front and center, supported by the campaign seal and technical spec chips, and unfolds across posts, stories, reels, and carousels. The result is a recognizable, straight-to-the-point feed that drives customers to WhatsApp and the website.",
+      },
+      "iaw-contabiliza-site": {
+        nome: "IAW Contabiliza - Online Accounting",
+        descricao:
+          "The challenge was to convey the trust of a traditional accounting firm in a 100% online service. The website was designed with the purple and yellow identity, organizing benefits, services, company registration, and switching accountants into clear navigation, with a contact form and FAQ to answer questions. The result is a page that reinforces IAW Contabiliza's credibility and turns visitors into qualified leads.",
+      },
     },
     modal: {
       close: "Close",

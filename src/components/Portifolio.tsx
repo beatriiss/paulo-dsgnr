@@ -61,6 +61,19 @@ const projetos: Projeto[] = [
     capa: "/images/portfolio/social-media/vanessa-paula/capa.png",
     imagens: gerarPaginas("/images/portfolio/social-media/vanessa-paula", 16, "png"),
   },
+  {
+    slug: "lucidata-social-media",
+    categoria: "Social Media",
+    capa: "/images/portfolio/social-media/lucidata/capa.png",
+    imagens: gerarPaginas("/images/portfolio/social-media/lucidata", 19, "png"),
+  },
+  {
+    slug: "iaw-contabiliza-site",
+    categoria: "Sites",
+    // Print da página inteira (1600x9992), usado tanto na capa quanto no modal
+    capa: "/images/portfolio/sites/iaw-contabiliza/pagina.jpg",
+    imagens: ["/images/portfolio/sites/iaw-contabiliza/pagina.jpg"],
+  },
 ];
 
 // Ordem fixa das categorias na seção, mesmo que ainda não tenham projetos
@@ -125,14 +138,35 @@ export default function Portfolio({ dict }: { dict: Dictionary["portfolio"] }) {
                             }
                             className="relative aspect-[1890/2355] overflow-hidden rounded-2xl bg-black text-left ring-1 ring-white/0 transition-[box-shadow,translate] duration-500 ease-out group-hover:-translate-y-1 group-hover:ring-white/15 group-hover:shadow-[0_20px_50px_-20px_rgba(56,182,255,0.35)]"
                           >
-                            <Image
-                              src={projeto.capa}
-                              alt={nome}
-                              fill
-                              sizes="(max-width: 768px) 100vw, 33vw"
-                              style={{ objectPosition: projeto.capaFoco ?? "center" }}
-                              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                            />
+                            {projeto.categoria === "Sites" ? (
+                              <>
+                                {/* Barra estilo navegador pra indicar que é um site */}
+                                <div className="absolute inset-x-0 top-0 z-10 flex h-6 items-center gap-1.5 bg-black/80 px-3 backdrop-blur">
+                                  <span className="h-1.5 w-1.5 rounded-full bg-[#FF5F57]" />
+                                  <span className="h-1.5 w-1.5 rounded-full bg-[#FEBC2E]" />
+                                  <span className="h-1.5 w-1.5 rounded-full bg-[#28C840]" />
+                                </div>
+                                {/* Página inteira a partir do topo; no hover "rola" até o fim
+                                    (top 0→100% somado a translateY 0→-100%) */}
+                                <Image
+                                  src={projeto.capa}
+                                  alt={nome}
+                                  width={1600}
+                                  height={9992}
+                                  sizes="(max-width: 768px) 100vw, 33vw"
+                                  className="absolute inset-x-0 top-0 h-auto w-full translate-y-0 transition-[top,translate] duration-[6000ms] ease-in-out group-hover:top-full group-hover:-translate-y-full"
+                                />
+                              </>
+                            ) : (
+                              <Image
+                                src={projeto.capa}
+                                alt={nome}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                                style={{ objectPosition: projeto.capaFoco ?? "center" }}
+                                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                              />
+                            )}
                           </button>
 
                           <div className="pt-3">
